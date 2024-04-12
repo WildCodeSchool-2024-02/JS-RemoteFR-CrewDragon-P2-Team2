@@ -1,13 +1,15 @@
-import Footer from "./components/Footer";
+import Playground from "./components/Playground";
 import ArrowButton from "./components/Rules";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <Footer />;
+    <main>
       <ArrowButton />
-    </>
-  );
+      <Playground/>
+      <Footer />
+  </main>
+  )
 }
 
 export default App;
