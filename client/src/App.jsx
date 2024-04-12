@@ -1,8 +1,13 @@
 import Footer from "./components/Footer";
-import "./App.css";
+import ArrowButton from "./components/Rules";
 
 function App() {
-  return <Footer />;
+  return (
+    <>
+      <Footer />;
+      <ArrowButton />
+    </>
+  );
 }
 
 export default App;
