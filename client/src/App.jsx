@@ -1,15 +1,17 @@
-import Playground from "./components/Playground";
+import Intro from "./components/Introduction";
 import ArrowButton from "./components/Rules";
+import Playground from "./components/Playground";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <main>
+      <Intro />
       <ArrowButton />
-      <Playground/>
+      <Playground />
       <Footer />
-  </main>
-  )
+    </main>
+  );
 }
 
 export default App;
