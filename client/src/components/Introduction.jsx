@@ -1,6 +1,6 @@
 function Intro() {
   return (
-    <div className="Intro">
+    <div className="intro">
       <h1 className="titre">Duels in hogwarts</h1>
       <img src="../src/assets/images/Harrypotter.png" alt="Fond" />
       <p>

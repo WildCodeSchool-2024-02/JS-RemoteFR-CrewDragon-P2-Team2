@@ -1,11 +1,16 @@
 import Intro from "./components/Introduction";
-import "./App.css";
+import ArrowButton from "./components/Rules";
+import Playground from "./components/Playground";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
+    <main>
       <Intro />
-    </div>
+      <ArrowButton />
+      <Playground />
+      <Footer />
+    </main>
   );
 }
 
