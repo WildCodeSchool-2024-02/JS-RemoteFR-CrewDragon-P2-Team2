@@ -2,7 +2,12 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "hogwarts-beige": "#F4F0E5",
+        "hogwars-brown": "#282121",
+      },
+    },
   },
   plugins: [],
 };
