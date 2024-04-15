@@ -2,6 +2,9 @@ import Intro from "./components/Introduction";
 import ArrowButton from "./components/Rules";
 import Playground from "./components/Playground";
 import Footer from "./components/Footer";
+
+import ScoreBoard from "./components/ScoreBoard";
+
 import CharactersSelection from "./components/CharactersSelection";
 
 function App() {
@@ -291,6 +294,7 @@ function App() {
         <ArrowButton />
         <CharactersSelection characters={characters} />
         <Playground />
+        <ScoreBoard />
       </main>
       <footer>
         <Footer />
