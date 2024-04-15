@@ -1,3 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #f4f0e5;
+}
+
+.titre {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 500;
+}
+
+.intro p {
+  font-family: "Quicksand", sans-serif;
+}
+
+.intro img {
+  width: 50%;
+  border-radius: 50px;
+}
+
+.intro {
+  text-align: center;
+}
