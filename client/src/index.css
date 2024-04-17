@@ -8,10 +8,26 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: #f4f0e5;
+}
+
+@layer components {
+  .burger-menu {
+    @apply fixed top-36 right-0 w-[95vw] bg-dabrown shadow-crd rounded-l-6xl py-10 px-[5vw] flex flex-col gap-6;
+  }
+  .burger-title {
+    @apply font-logo text-xl text-beige border-b-2 border-brown border-opacity-25;
+  }
+  .burger-list {
+    @apply font-cinzel text-xl text-beige border-b-2 border-brown border-opacity-25;
+  }
+  .burger-link {
+    @apply hover:[text-shadow:_0_0_16px_#faf9f8];
+  }
 }
 
 .titre {

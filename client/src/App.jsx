@@ -1,3 +1,4 @@
+import NavBar from "./components/NavBar";
 import Intro from "./components/Introduction";
 import ArrowButton from "./components/Rules";
 import Playground from "./components/Playground";
@@ -289,7 +290,7 @@ function App() {
     
     <>
       <header>
-        <p>Place the navBar here</p>
+        <NavBar />
       </header>
       <main className="flex flex-col items-center">
         <Intro />
