@@ -1,7 +1,4 @@
-import CharacterCard from "./CharacterCard";
-
 function Playground() {
-
   return (
     <section className="containerChooseCharacter">
       <h2>... And cast your spells !</h2>
