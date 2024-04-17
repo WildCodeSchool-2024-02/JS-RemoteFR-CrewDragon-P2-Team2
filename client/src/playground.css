@@ -4,20 +4,19 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 800px;
   border-radius: 40px;
 }
 
-.sandbox {
+.playgroundBackground {
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sandbox::before {
+.playgroundBackground::before {
   content: "";
   background-color: rgb(107, 88, 88);
   background-size: cover;
@@ -30,10 +29,122 @@
   border-radius: 40px;
 }
 
-.text {
+.playgroundContent {
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 3rem;
   position: relative;
   color: #ffffff;
   font-size: 1rem;
   line-height: 0.9;
   text-align: center;
+}
+
+.titleRound {
+  background-color: #f4f0e5;
+  padding: 20px;
+  border-radius: 50px;
+  color: #282121;
+  font-weight: bold;
+  font-size: 1.4rem;
+  width: 60%;
+  box-shadow:
+    -8px -8px 16px rgba(250, 249, 248, 0.15),
+    8px 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.spellsSelection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  background-color: #f4f0e5;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.layoutPlayers {
+  width: 100%;
+  display: grid;
+  row-gap: 2rem;
+  grid-template-areas:
+    "card1 . card2"
+    "btn btn btn";
+
+  justify-content: space-around;
+}
+
+.player {
+  background-color: blueviolet;
+  position: relative;
+}
+.player:nth-child(1) {
+  grid-area: card1;
+}
+
+.player:nth-child(2) {
+  grid-area: card2;
+}
+
+.player img {
+  opacity: 0.5;
+}
+
+.player p {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  background-color: blue;
+}
+
+.nextButton {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: btn;
+}
+
+.nextButton button {
+  width: 200px;
+}
+
+img {
+  border-radius: 10px;
+  opacity: 100%;
+}
+
+.buttonNext {
+  color: #ffffff;
+  text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+  .player:nth-child(1) p {
+    position: absolute;
+    top: 28%;
+    left: 143%;
+    background-color: red;
+  }
+
+  .player:nth-child(2) p {
+    position: absolute;
+    top: 58%;
+    left: -88%;
+    background-color: green;
+  }
+
+  .spellsSelection {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .layoutPlayers {
+    grid-template-areas: "card1 btn card2";
+  }
+
+  .nextButton {
+    justify-content: flex-end;
+  }
 }

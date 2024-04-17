@@ -7,6 +7,7 @@ export default {
       beige: "#F4F0E5",
       brown: "#CCC2A8",
       dabrown: "#282121",
+      grey: "#8E8983",
     },
     fontFamily: {
       quicksand: ["Quicksand", "sans-serif"],
