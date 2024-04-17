@@ -18,26 +18,136 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: #f4f0e5;
 }
 
+@layer components {
+  .burger-menu {
+    @apply fixed top-36 right-0 w-[95vw] bg-dabrown shadow-crd rounded-l-6xl py-10 px-[5vw] flex flex-col gap-6;
+  }
+  .burger-title {
+    @apply font-logo text-xl text-beige border-b-2 border-brown border-opacity-25;
+  }
+  .burger-list {
+    @apply font-cinzel text-xl text-beige border-b-2 border-brown border-opacity-25;
+  }
+  .burger-link {
+    @apply hover:[text-shadow:_0_0_16px_#faf9f8];
+  }
+}
+
 .titre {
   font-family: "Cinzel Decorative", serif;
-  font-weight: 500;
+  font-size: 100px;
 }
 
 .intro p {
   font-family: "Quicksand", sans-serif;
+  font-size: 2rem;
+  margin-top: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+.WizardWin {
+  font-weight: bolder;
+}
+.imgIntro {
+  width: 1310px;
+  height: 327px;
+  border-radius: 50px;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  margin-top: 100px;
 }
 
-.intro img {
-  width: 50%;
-  border-radius: 50px;
+.intro .line {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 50px;
+  width: 1310.01px;
+  border: 2px solid #ccc2a8;
+  transform: rotate(-0.17deg);
 }
 
 .intro {
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.rules {
+  margin-top: 50px;
+}
+
+.rules h1 {
+  color: #282121;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Cinzel", serif;
+}
+
+.rules p {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.rules button {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-left: 2rem;
+}
+
+.line {
+  margin-top: 50px;
+  width: 1310.01px;
+  align-items: center;
+  border: 2px solid #ccc2a8;
+  transform: rotate(-0.17deg);
+}
+
+.Card {
+  height: 500px;
+  background-color: #dfac22;
+  border-radius: 15px;
+  box-shadow:
+    -8px -8px 16px rgba(250, 249, 248, 0.15),
+    8px 8px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  width: 300px;
+  height: 480px;
+}
+
+.Card img {
+  border-radius: 50px;
+  width: 16rem;
+}
+
+.barreHp {
+  width: 144px;
+  height: 10px;
+  background: green;
+  border-radius: 50px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }

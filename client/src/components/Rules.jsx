@@ -52,14 +52,16 @@ function ArrowButton() {
   };
 
   return (
-    <div>
+    <div className="rules">
       <h1>
         If you want to kwon more about the Rules
         <button type="button" onClick={toggleContent}>
-          {showContent ? "▲" : "▼"}
+          {showContent ? "+" : "+"}
         </button>
       </h1>
       {showContent && <Rules />}
+
+      <div className="line"> </div>
     </div>
   );
 }

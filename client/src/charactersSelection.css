@@ -26,6 +26,7 @@ h2 {
   flex-wrap: wrap;
   row-gap: 2rem;
   justify-content: center;
+  column-gap: 0.3rem;
 }
 
 .ChooseCharacterCard {
@@ -46,20 +47,6 @@ h2 {
   margin: 0 0.4rem;
 }
 
-.ChooseCharacterCard::before {
-  content: "";
-  background-image: url(https://ik.imagekit.io/hpapi/harry.jpg);
-  background-size: cover;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.75;
-}
-
 .containerChooseCharacterCard span,
 .containerChooseCharacterCard input {
   display: none;
@@ -67,11 +54,41 @@ h2 {
 
 .containerChooseCharacterCard input:checked + label {
   width: 200px;
+  border-radius: 40px;
 }
 
-.ChooseCharacterCardDescription {
-  position: relative;
-  font-weight: bold;
-  color: #282121;
+.containerChooseCharacterCard input:checked + label > .modaleChooseCharacter {
+  border-radius: 40px;
+  background: linear-gradient(145deg, #fffff5, #dcd8ce);
+  box-shadow:
+    7px 7px 70px #62605c,
+    -7px -7px 70px #ffffff;
+  position: absolute;
+  top: 55%;
+  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+}
+
+.modaleChooseCharacter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.6rem;
+  position: absolute;
+  padding-top: 1.3rem;
+  width: 100%;
+  height: 100%;
+  top: 100%;
   text-align: center;
+}
+
+.modaleChooseCharacter button {
+  padding: 10px 20px;
+  height: 47px;
+  width: 80%;
+  color: #f4f0e5;
+  background: #282121;
+  box-shadow:
+    -4px -4px 8px rgba(250, 249, 248, 0.5),
+    4px 4px 8px rgba(40, 33, 33, 0.25);
+  border-radius: 25px;
 }
