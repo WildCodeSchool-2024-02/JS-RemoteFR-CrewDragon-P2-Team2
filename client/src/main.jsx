@@ -6,6 +6,7 @@ import App from "./App";
 
 import "./index.css";
 import "./charactersSelection.css";
+import "./playground.css";
 
 const router = createBrowserRouter([
   {
