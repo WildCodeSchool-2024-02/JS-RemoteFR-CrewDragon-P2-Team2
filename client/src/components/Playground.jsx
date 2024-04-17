@@ -1,9 +1,7 @@
+import CharacterCard from "./CharacterCard";
+
 function Playground() {
-  return (
-    <div className="playground">
-      <p>Hello world</p>
-    </div>
-  );
+  return <CharacterCard />;
 }
 
 export default Playground;
