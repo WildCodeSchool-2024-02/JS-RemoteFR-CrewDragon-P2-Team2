@@ -1,0 +1,94 @@
+h2 {
+  color: #282121;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Cinzel", serif;
+}
+
+.containerChooseCharacter {
+  width: 100%;
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerChooseCharacterCard {
+  width: 90%;
+  max-width: 1024px;
+  margin: 1rem 0;
+  box-shadow:
+    inset -16px -16px 24px 2px #faf9f8,
+    inset 16px 16px 24px 2px #e0dacb;
+  background-color: #f4f0e5;
+  border-radius: 50px;
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  justify-content: center;
+  column-gap: 0.3rem;
+}
+
+.ChooseCharacterCard {
+  position: relative;
+  width: 120px;
+  height: 380px;
+  border: 4px solid #f4f0e5;
+  box-shadow:
+    -4px -4px 8px 2px #faf9f8,
+    4px 4px 8px 2px #ccc2a8;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 0.4rem;
+}
+
+.containerChooseCharacterCard span,
+.containerChooseCharacterCard input {
+  display: none;
+}
+
+.containerChooseCharacterCard input:checked + label {
+  width: 200px;
+  border-radius: 40px;
+}
+
+.containerChooseCharacterCard input:checked + label > .modaleChooseCharacter {
+  border-radius: 40px;
+  background: linear-gradient(145deg, #fffff5, #dcd8ce);
+  box-shadow:
+    7px 7px 70px #62605c,
+    -7px -7px 70px #ffffff;
+  position: absolute;
+  top: 55%;
+  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+}
+
+.modaleChooseCharacter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.6rem;
+  position: absolute;
+  padding-top: 1.3rem;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  text-align: center;
+}
+
+.modaleChooseCharacter button {
+  padding: 10px 20px;
+  height: 47px;
+  width: 80%;
+  color: #f4f0e5;
+  background: #282121;
+  box-shadow:
+    -4px -4px 8px rgba(250, 249, 248, 0.5),
+    4px 4px 8px rgba(40, 33, 33, 0.25);
+  border-radius: 25px;
+}
