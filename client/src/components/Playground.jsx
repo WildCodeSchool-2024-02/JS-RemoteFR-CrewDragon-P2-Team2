@@ -1,5 +1,8 @@
+
 import { useState } from "react";
+import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCard";
+
 
 function Playground() {
   const [show, setShow] = useState(true);
@@ -39,18 +42,7 @@ function Playground() {
                 </div>
               </article>
               <article className="spellsSelection">
-                <button type="submit" className="btn-primary">
-                  Protego
-                </button>
-                <button type="submit" className="btn-primary">
-                  Confringo
-                </button>
-                <button type="submit" className="btn-primary">
-                  Stupefix
-                </button>
-                <button type="submit" className="btn-secondary">
-                  Slugulus Eructo
-                </button>
+                <ButtonSpells />
               </article>
             </section>
           </div>

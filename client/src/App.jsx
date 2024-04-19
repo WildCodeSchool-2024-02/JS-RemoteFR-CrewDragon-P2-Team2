@@ -3,7 +3,6 @@ import Intro from "./components/Introduction";
 import ArrowButton from "./components/Rules";
 import Playground from "./components/Playground";
 import Footer from "./components/Footer";
-import ButtonSpells from "./components/ButtonSpells";
 
 import ScoreBoard from "./components/ScoreBoard";
 
@@ -295,7 +294,6 @@ function App() {
         <Intro />
         <ArrowButton />
         <CharactersSelection characters={characters} />
-        <ButtonSpells />
         <Playground />
         <ScoreBoard />
       </main>
