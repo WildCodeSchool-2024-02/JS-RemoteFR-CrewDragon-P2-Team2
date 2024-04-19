@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CharacterCard from "./CharacterCard";
 
 function Playground() {
   const [show, setShow] = useState(true);
@@ -24,17 +25,11 @@ function Playground() {
               <h3 className="titleRound">Round 1</h3>
               <article className="layoutPlayers">
                 <div className="player">
-                  <img
-                    src="https://placehold.co/200x360/EEE/31343C"
-                    alt="placeholder"
-                  />
+                  <CharacterCard />
                   <p className="btn-primary">Protego</p>
                 </div>
                 <div className="player">
-                  <img
-                    src="https://placehold.co/200x360/EEE/31343C"
-                    alt="placeholder"
-                  />
+                  <CharacterCard />
                   <p className="btn-primary">Protego</p>
                 </div>
                 <div className="nextButton">
