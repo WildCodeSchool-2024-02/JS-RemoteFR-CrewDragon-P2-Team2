@@ -1,6 +1,12 @@
+import { useState } from "react";
 import CharacterCard from "./CharacterCard";
 
 function Playground() {
+  const [show, setShow] = useState(true);
+  const handleModal = () => {
+    setShow(!show);
+  };
+
   return (
     <section className="containerChooseCharacter">
       <h2>... And cast your spells !</h2>
@@ -48,6 +54,20 @@ function Playground() {
               </article>
             </section>
           </div>
+          {show && (
+            <div className="modal">
+              <div className="modalText">
+                <h3>Here’s your battle ground !</h3>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  onClick={handleModal}
+                >
+                  Play
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </article>
     </section>
