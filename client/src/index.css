@@ -23,11 +23,12 @@
 
 body {
   background-color: #f4f0e5;
+  overflow-x: hidden;
 }
 
 @layer components {
   .burger-menu {
-    @apply fixed top-36 right-0 w-[95vw] bg-dabrown shadow-crd rounded-l-6xl py-10 px-[5vw] flex flex-col gap-6;
+    @apply top-36 right-0 max-w-[95vw] bg-dabrown shadow-crd rounded-l-6xl py-10 px-[5vw] flex flex-col gap-6;
   }
   .burger-title {
     @apply font-logo text-xl text-beige border-b-2 border-brown border-opacity-25;
@@ -38,83 +39,15 @@ body {
   .burger-link {
     @apply hover:[text-shadow:_0_0_16px_#faf9f8];
   }
-}
 
-.titre {
-  font-family: "Cinzel Decorative", serif;
-  font-size: 100px;
-}
+  .title-sections {
+    @apply font-cinzel text-dabrown text-xl md:text-2xl lg:text-3xl leading-9;
+  }
 
-.intro p {
-  font-family: "Quicksand", sans-serif;
-  font-size: 2rem;
-  margin-top: 50px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 80px;
-}
-.WizardWin {
-  font-weight: bolder;
-}
-.imgIntro {
-  width: 1310px;
-  height: 327px;
-  border-radius: 50px;
-  text-align: center;
-  margin: auto;
-  display: flex;
-  margin-top: 100px;
-}
-
-.intro .line {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-top: 50px;
-  width: 1310.01px;
-  border: 2px solid #ccc2a8;
-  transform: rotate(-0.17deg);
-}
-
-.intro {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.rules {
-  margin-top: 50px;
-}
-
-.rules h1 {
-  color: #282121;
-  font-size: 2rem;
-  text-align: center;
-  font-family: "Cinzel", serif;
-}
-
-.rules p {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.rules button {
-  font-size: 3rem;
-  font-weight: 900;
-  margin-left: 2rem;
-}
-
-.line {
-  margin-top: 50px;
-  width: 1310.01px;
-  align-items: center;
-  border: 2px solid #ccc2a8;
-  transform: rotate(-0.17deg);
+  .rules-title {
+    @apply font-quicksand font-bold text-lg text-dabrown leading-8;
+  }
+  .rules-text {
+    @apply font-quicksand font-light text-dabrown leading-7;
+  }
 }

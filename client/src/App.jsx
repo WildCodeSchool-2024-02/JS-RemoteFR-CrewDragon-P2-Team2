@@ -1,13 +1,11 @@
 import NavBar from "./components/NavBar";
 import Intro from "./components/Introduction";
-import ArrowButton from "./components/Rules";
-import Playground from "./components/Playground";
-import Footer from "./components/Footer";
-import ButtonSpells from "./components/ButtonSpells";
-
-import ScoreBoard from "./components/ScoreBoard";
-
+import Rules from "./components/Rules";
 import CharactersSelection from "./components/CharactersSelection";
+import Playground from "./components/Playground";
+import ButtonSpells from "./components/ButtonSpells";
+import ScoreBoard from "./components/ScoreBoard";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,9 +13,9 @@ function App() {
       <header>
         <NavBar />
       </header>
-      <main className="flex flex-col items-center">
+      <main className="flex flex-col items-center gap-y-12 md:gap-y-16">
         <Intro />
-        <ArrowButton />
+        <Rules />
         <CharactersSelection />
         <ButtonSpells />
         <Playground />
