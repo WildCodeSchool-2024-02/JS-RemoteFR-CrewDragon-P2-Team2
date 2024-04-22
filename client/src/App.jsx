@@ -16,7 +16,7 @@ function App() {
       <main className="flex flex-col items-center gap-y-12 md:gap-y-16">
         <Intro />
         <Rules />
-        <CharactersSelection characters={characters} />
+        <CharactersSelection />
         <ButtonSpells />
         <Playground />
         <ScoreBoard />
