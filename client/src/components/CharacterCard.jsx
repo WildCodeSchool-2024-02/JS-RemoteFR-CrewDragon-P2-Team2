@@ -1,9 +1,9 @@
 function CharacterCard() {
   return (
-    <figure className="Card">
+    <figure className="characterCard">
       <img src="https://ik.imagekit.io/hpapi/harry.jpg" alt="Personnage" />
-      <figcaption> Harry Potter </figcaption>
-      <div className="barreHp">
+      <figcaption className="font-bold text-dabrown"> Harry Potter </figcaption>
+      <div className="healthBar">
         <div className="health"> </div>
       </div>
     </figure>

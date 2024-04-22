@@ -11,7 +11,11 @@
   }
 
   .containerPlayground {
-    @apply w-full shadow-[inset_-16px_-16px_24px_2px_#faf9f8,inset_16px_16px_24px_2px_#e0dacb] bg-[#f4f0e5] flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-[50px];
+    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+  }
+
+  .characterCard {
+    @apply bg-beige shadow-area flex flex-col justify-center items-center gap-5 p-5 rounded-6xl;
   }
 
   @media screen and (max-width: 768px) {
@@ -22,11 +26,15 @@
 
   /* Components */
   .btn-primary {
-    @apply bg-dabrown font-quicksand rounded-4xl px-4 py-4 shadow-crd;
+    @apply bg-dabrown font-quicksand rounded-4xl px-4 py-4 shadow-crd text-beige;
   }
 
   .btn-secondary {
     @apply bg-grey font-quicksand rounded-4xl px-4 py-4 shadow-crd;
+  }
+
+  .btn-third {
+    @apply bg-beige text-dabrown font-semibold font-quicksand rounded-4xl px-4 py-4 shadow-area w-8/12;
   }
 
   /* General */
@@ -34,11 +42,15 @@
     @apply box-border scroll-smooth m-0 p-0;
   }
   body {
-    @apply bg-[#f4f0e5] overflow-x-hidden;
+    @apply bg-beige overflow-x-hidden;
   }
 
   .title-sections {
     @apply font-cinzel text-dabrown text-xl md:text-2xl lg:text-3xl leading-9 text-center;
+  }
+
+  .characterCard img {
+    @apply w-full rounded-6xl;
   }
   /* Navbar */
   .burger-menu {
@@ -86,5 +98,118 @@
 
   .modalCharacterSelection button {
     @apply bg-dabrown h-[47px] font-quicksand w-4/5 text-libeige shadow-[-4px_-4px_8px_rgba(250,249,248,0.5),4px_4px_8px_rgba(40,33,33,0.25)] px-5 py-2.5 rounded-[25px];
+  }
+
+  /* Playground */
+  .title-playground {
+    @apply font-cinzel text-beige text-3xl font-semibold leading-9 text-center my-6;
+    text-shadow:
+      0px 0px 40px beige,
+      0px 0px 20px beige,
+      0px -4px 10px beige,
+      0px 0px 20px beige;
+  }
+
+  .playground {
+    @apply relative flex flex-col items-center justify-center w-full rounded-[40px];
+  }
+
+  .modal {
+    @apply w-full h-full absolute flex flex-col items-center justify-center;
+  }
+
+  .modal::before {
+    @apply content-[""] bg-dabrown opacity-75 blur-[7.5px] w-full h-full absolute rounded-[40px];
+  }
+
+  .modalText {
+    @apply relative text-center mx-8 my-0;
+  }
+
+  .playgroundBackground {
+    @apply relative h-full w-full flex items-center justify-center;
+  }
+
+  .playgroundBackground::before {
+    @apply content-[""] bg-dabrown bg-cover absolute opacity-50 rounded-[40px] inset-0;
+  }
+
+  .playgroundContent {
+    @apply flex flex-col items-center justify-center gap-y-12 relative text-beige text-base leading-[0.9] text-center px-0 py-12;
+  }
+
+  .titleRound {
+    @apply bg-beige text-dabrown font-bold text-[1.4rem] w-3/5 shadow-area p-5 rounded-6xl;
+  }
+
+  .spellsSelection {
+    @apply grid grid-cols-[repeat(2,1fr)] gap-12 bg-beige p-5 shadow-area rounded-6xl;
+  }
+
+  .healthBar {
+    @apply w-[90%] border rounded-6xl border-solid border-dabrown;
+  }
+  .health {
+    @apply float-right w-6/12 h-2.5 bg-dabrown rounded-6xl;
+  }
+
+  .layoutPlayers {
+    @apply w-full grid gap-y-20 justify-around;
+    grid-template-areas:
+      "card1 . card2"
+      "btn btn btn";
+  }
+
+  .player {
+    @apply relative;
+  }
+  .player:nth-child(1) {
+    grid-area: card1;
+  }
+  .player:nth-child(2) {
+    grid-area: card2;
+  }
+  .player p {
+    /* sort mobile */
+    @apply absolute left-[15%] top-[85%];
+  }
+
+  .nextButton {
+    @apply flex flex-col items-center;
+    grid-area: btn;
+  }
+  .nextButton button {
+    @apply w-[200px];
+  }
+  .buttonNext {
+    @apply text-white text-center;
+  }
+  @media screen and (min-width: 992px) {
+    /* first sort desktop */
+    .player:nth-child(1) p {
+      @apply absolute left-[20%] top-[25%];
+    }
+    /* second sort desktop */
+    .player:nth-child(2) p {
+      @apply absolute left-[20%] top-[45%];
+    }
+    .spellsSelection {
+      @apply grid-cols-[repeat(4,1fr)];
+    }
+    .layoutPlayers {
+      grid-template-areas: "card1 btn card2";
+    }
+    .nextButton {
+      @apply justify-end;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .playgroundContent {
+      @apply px-[3%] py-[10%];
+    }
+    .spellsSelection {
+      @apply grid-cols-[repeat(2,1fr)] gap-4;
+    }
   }
 }
