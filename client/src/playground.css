@@ -1,3 +1,20 @@
+.containerPlayground {
+  width: 90%;
+  max-width: 1024px;
+  margin: 1rem 0;
+  box-shadow:
+    inset -16px -16px 24px 2px #faf9f8,
+    inset 16px 16px 24px 2px #e0dacb;
+  background-color: #f4f0e5;
+  border-radius: 50px;
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  justify-content: center;
+  column-gap: 0.3rem;
+}
+
 .playground {
   position: relative;
   display: flex;
@@ -93,6 +110,39 @@
   border-radius: 50px;
 }
 
+.Card {
+  background-color: #f4f0e5;
+  box-shadow:
+    -8px -8px 16px rgba(250, 249, 248, 0.15),
+    8px 8px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.Card img {
+  border-radius: 40px;
+  width: 100%;
+}
+
+.barreHp {
+  width: 90%;
+  border-radius: 50px;
+  border: 1px solid #282121;
+}
+
+.health {
+  float: right;
+  width: 50%;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #282121;
+}
+
 .layoutPlayers {
   width: 100%;
   display: grid;
@@ -105,19 +155,15 @@
 }
 
 .player {
-  background-color: blueviolet 100%;
   position: relative;
 }
+
 .player:nth-child(1) {
   grid-area: card1;
 }
 
 .player:nth-child(2) {
   grid-area: card2;
-}
-
-.player img {
-  opacity: 0.5;
 }
 
 .player p {
@@ -139,11 +185,6 @@
   width: 200px;
 }
 
-img {
-  border-radius: 10px;
-  opacity: 100%;
-}
-
 .buttonNext {
   color: #ffffff;
   text-align: center;
@@ -152,13 +193,15 @@ img {
 @media screen and (min-width: 992px) {
   .player:nth-child(1) p {
     position: absolute;
+
     top: 28%;
-    left: 143%;
+    left: 0%;
     background-color: red;
   }
 
   .player:nth-child(2) p {
     position: absolute;
+
     top: 58%;
     left: -88%;
     background-color: green;
@@ -174,5 +217,21 @@ img {
 
   .nextButton {
     justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .containerPlayground {
+    padding: 0;
+    width: 100%;
+  }
+
+  .playgroundContent {
+    padding: 10% 3%;
+  }
+
+  .spellsSelection {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }

@@ -1,8 +1,6 @@
-
 import { useState } from "react";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCard";
-
 
 function Playground() {
   const [show, setShow] = useState(true);
@@ -13,7 +11,7 @@ function Playground() {
   return (
     <section className="containerChooseCharacter">
       <h2>... And cast your spells !</h2>
-      <article className="containerChooseCharacterCard">
+      <article className="containerPlayground">
         <div
           className="playground"
           style={{
@@ -29,11 +27,11 @@ function Playground() {
               <article className="layoutPlayers">
                 <div className="player">
                   <CharacterCard />
-                  <p className="btn-primary">Protego</p>
+                  <p className="btn-primary sortUsed">Protego</p>
                 </div>
                 <div className="player">
                   <CharacterCard />
-                  <p className="btn-primary">Protego</p>
+                  <p className="btn-primary sortUsed">Protego</p>
                 </div>
                 <div className="nextButton">
                   <button type="submit" className="btn-primary">
