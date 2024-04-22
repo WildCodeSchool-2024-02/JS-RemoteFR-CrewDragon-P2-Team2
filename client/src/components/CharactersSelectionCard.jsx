@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function CharactersSelectionCard({ characters }) {
   return (
-    <>
+    <article className="containerChooseCharacterCard">
       {characters.map((character, index) => (
         <>
           <input type="radio" name="slide" id={`c${index + 1}`} />
@@ -25,7 +25,7 @@ function CharactersSelectionCard({ characters }) {
           </label>
         </>
       ))}
-    </>
+    </article>
   );
 }
 
