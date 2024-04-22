@@ -5,6 +5,22 @@
 @tailwind utilities;
 
 @layer components {
+  /* Containers */
+  .containerNeumorphism {
+    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+  }
+
+  .containerPlayground {
+    @apply w-full shadow-[inset_-16px_-16px_24px_2px_#faf9f8,inset_16px_16px_24px_2px_#e0dacb] bg-[#f4f0e5] flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-[50px];
+  }
+
+  @media screen and (max-width: 768px) {
+    .containerPlayground {
+      @apply w-full p-0;
+    }
+  }
+
+  /* Components */
   .btn-primary {
     @apply bg-dabrown font-quicksand rounded-4xl px-4 py-4 shadow-crd;
   }
@@ -12,21 +28,19 @@
   .btn-secondary {
     @apply bg-grey font-quicksand rounded-4xl px-4 py-4 shadow-crd;
   }
-}
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
-}
+  /* General */
+  * {
+    @apply box-border scroll-smooth m-0 p-0;
+  }
+  body {
+    @apply bg-[#f4f0e5] overflow-x-hidden;
+  }
 
-body {
-  background-color: #f4f0e5;
-  overflow-x: hidden;
-}
-
-@layer components {
+  .title-sections {
+    @apply font-cinzel text-dabrown text-xl md:text-2xl lg:text-3xl leading-9 text-center;
+  }
+  /* Navbar */
   .burger-menu {
     @apply top-36 right-0 max-w-[95vw] bg-dabrown shadow-crd rounded-l-6xl py-10 px-[5vw] flex flex-col gap-6;
   }
@@ -40,14 +54,37 @@ body {
     @apply hover:[text-shadow:_0_0_16px_#faf9f8];
   }
 
-  .title-sections {
-    @apply font-cinzel text-dabrown text-xl md:text-2xl lg:text-3xl leading-9;
-  }
-
+  /* Rules */
   .rules-title {
     @apply font-quicksand font-bold text-lg text-dabrown leading-8;
   }
   .rules-text {
     @apply font-quicksand font-light text-dabrown leading-7;
+  }
+
+  /* Selection Character */
+  .characterCardSelection {
+    @apply relative w-[120px] h-[380px] shadow-crd flex justify-center items-center transition-[0.6s] duration-[0.6s] cursor-pointer overflow-hidden mx-[0.4rem] my-0 rounded-[100px] border-4 border-solid border-beige;
+  }
+
+  .containerNeumorphism input:checked + label > .modalCharacterSelection {
+    @apply shadow-crd absolute transition-[0.6s] duration-[0.6s] rounded-[40px] top-[55%];
+    background: linear-gradient(145deg, #fffff5, #dcd8ce);
+  }
+
+  .containerNeumorphism span,
+  .containerNeumorphism input {
+    @apply hidden;
+  }
+  .containerNeumorphism input:checked + label {
+    @apply w-[200px] rounded-[40px];
+  }
+
+  .modalCharacterSelection {
+    @apply font-quicksand flex flex-col items-center gap-y-[0.6rem] absolute w-full h-full text-center pt-[1.3rem] top-full;
+  }
+
+  .modalCharacterSelection button {
+    @apply bg-dabrown h-[47px] font-quicksand w-4/5 text-libeige shadow-[-4px_-4px_8px_rgba(250,249,248,0.5),4px_4px_8px_rgba(40,33,33,0.25)] px-5 py-2.5 rounded-[25px];
   }
 }
