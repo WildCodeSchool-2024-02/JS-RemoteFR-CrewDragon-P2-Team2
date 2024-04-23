@@ -1,36 +1,6 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 
-function ButtonSpells() {
-  const [spells, setSpells] = useState([
-    {
-      id: 1,
-      name: "Protego",
-      isUsed: false,
-    },
-    {
-      id: 2,
-      name: "Confringo",
-      isUsed: false,
-    },
-    {
-      id: 3,
-      name: "Stupéfix",
-      isUsed: false,
-    },
-    {
-      id: 4,
-      name: "Slugulus Eructo",
-      isUsed: false,
-    },
-  ]);
-  const handleClick = (selectedSpell) => {
-    // on filtre le sort selectionné
-    const updateSpells = spells.map((spell) =>
-      spell.name === selectedSpell ? { ...spell, isUsed: true } : spell
-    );
-    setSpells(updateSpells);
-  };
-
+function ButtonSpells({ spells, handleClick }) {
   return (
     <>
       {spells.map((spell) => (
@@ -47,5 +17,13 @@ function ButtonSpells() {
     </>
   );
 }
+
+ButtonSpells.propTypes = {
+  // eslint-disable-next-line react/require-default-props
+  handleClick: PropTypes.func,
+  spells: PropTypes.shape({
+    map: PropTypes.func,
+  }).isRequired,
+};
 
 export default ButtonSpells;
