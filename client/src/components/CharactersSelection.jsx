@@ -14,7 +14,9 @@ function CharactersSelection() {
         return response.json();
       })
       .then((data) => {
-        const charactersWithImage = data.filter((character) => character.image);
+        const charactersWithImage = data
+          .filter((character) => character.image)
+          .slice(0, 12);
         setCharactersData(charactersWithImage);
         setIsLoading(false);
       })
@@ -24,8 +26,8 @@ function CharactersSelection() {
   }, []);
 
   return (
-    <section className="containerChooseCharacter">
-      <h2>Choose your character</h2>
+    <section className="py-4 w-80 mx-auto flex flex-col items-center">
+      <h2 className="title-sections">Choose your character</h2>
       {!isLoading ? (
         <CharactersSelectionCard characters={charactersData} />
       ) : (

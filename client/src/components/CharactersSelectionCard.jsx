@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 
 function CharactersSelectionCard({ characters }) {
   return (
-    <article className="containerChooseCharacterCard">
+    <article className="containerNeumorphism">
       {characters.map((character, index) => (
         <>
           <input type="radio" name="slide" id={`c${index + 1}`} />
           <label
             htmlFor={`c${index + 1}`}
-            className="ChooseCharacterCard"
+            className="characterCardSelection"
             style={{
               background: `url(${character.image})`,
               backgroundPosition: "center",
@@ -17,10 +17,10 @@ function CharactersSelectionCard({ characters }) {
             }}
           >
             <span>label</span>
-            <div className="modaleChooseCharacter">
+            <div className="modalCharacterSelection">
               <p className="font-bold">{character.name}</p>
               <p>{character.house}</p>
-              <button type="submit">Choose</button>
+              <button type="button">Choose</button>
             </div>
           </label>
         </>

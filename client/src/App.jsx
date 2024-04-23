@@ -3,7 +3,6 @@ import Intro from "./components/Introduction";
 import Rules from "./components/Rules";
 import CharactersSelection from "./components/CharactersSelection";
 import Playground from "./components/Playground";
-import ButtonSpells from "./components/ButtonSpells";
 import ScoreBoard from "./components/ScoreBoard";
 import Footer from "./components/Footer";
 
@@ -17,7 +16,6 @@ function App() {
         <Intro />
         <Rules />
         <CharactersSelection />
-        <ButtonSpells />
         <Playground />
         <ScoreBoard />
       </main>

@@ -1,12 +1,12 @@
 function ScoreBoard() {
   return (
-    <>
-      <h1>ScoreBoard</h1>
+    <section className="py-4 w-80 mx-auto flex flex-col items-center">
+      <h2 className="title-sections">ScoreBoard</h2>
       <p>Find your result here !</p>
-      <section className="containerChooseCharacterCard">
+      <article className="containerNeumorphism">
         <p>Hello</p>
-      </section>
-    </>
+      </article>
+    </section>
   );
 }
 
