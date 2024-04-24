@@ -142,7 +142,7 @@ function Playground() {
             <div className="modal">
               <div className="modalText">
                 <h3 className="title-playground">
-                  {gameOver ? "Game Over" : "Here’s your battle ground !"}
+                  {gameOver ? "Game Over !" : "Here’s your battle ground !"}
                 </h3>
                 <button
                   type="button"
