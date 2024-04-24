@@ -42,6 +42,7 @@ function Playground({ playerChoose, computerPlayer }) {
   const [displayRandomSpell, setDisplayRandomSpell] = useState(""); // Affiche le sort du computer
   const [healthComputer, setHealthComputer] = useState(100); // Par défaut santé du computer
   const [healthPlayer, setHealthPlayer] = useState(100); // Par défaut santé du joueur
+  const [winner, setWinner] = useState(); // Stocker le gagnant du combat
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -112,6 +113,14 @@ function Playground({ playerChoose, computerPlayer }) {
       setSpells(defaultSpells); // Les sorts par défauts sont rechargés
       setHealthComputer(100); // Les santés par défaut sont rechargées
       setHealthPlayer(100);
+
+      if (healthComputer < healthPlayer) {
+        setWinner(`The Winner is ${playerChoose.name}`);
+      } else if (healthComputer > healthPlayer) {
+        setWinner(`The Winner is ${computerPlayer.name}`);
+      } else {
+        setWinner("There is no winner");
+      }
     }
   };
 
@@ -182,9 +191,7 @@ function Playground({ playerChoose, computerPlayer }) {
             <div className="modal z-20">
               <div className="modalText">
                 <h3 className="title-playground">
-                  {gameOver
-                    ? `The Winner is ${playerChoose.name}`
-                    : "Here’s your battle ground !"}
+                  {gameOver ? winner : "Here’s your battle ground !"}
                 </h3>
                 <button
                   type="button"
