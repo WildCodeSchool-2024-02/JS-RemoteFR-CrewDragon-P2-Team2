@@ -3,8 +3,8 @@ import { useState } from "react";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
+
 function Playground({ playerChoose, computerPlayer }) {
-  const [show, setShow] = useState(true);
   const defaultSpells = [
     {
       id: 1,
@@ -108,19 +108,18 @@ function Playground({ playerChoose, computerPlayer }) {
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
-
                   {hide === true && (
                     <p className={`btn-third ${style}`}>{displaySpell}</p>
                   )}
                   <CharacterCard fighter={playerChoose} />
                 </div>
                 <div className="player">
-                  {show ? (
+                  {showModal ? (
                     <CharacterCard />
                   ) : (
                     <CharacterCard fighter={computerPlayer} />
                   )}
-                 {hide && <p className="btn-third">{displayRandomSpell}</p>}
+                  {hide && <p className="btn-third">{displayRandomSpell}</p>}
                 </div>
                 <div className="nextButton">
                   {hide === true && (
