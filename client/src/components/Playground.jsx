@@ -63,8 +63,20 @@ function Playground() {
 
   // On affiche la modal par défaut
   const [show, setShow] = useState(true);
+  const [round, setRound] = useState(1);
+  const [gameOver, setGameOver] = useState(false);
   const handleModal = () => {
     setShow(!show);
+  };
+
+  const handleNextRound = () => {
+    if (round < 3) {
+      setRound(round + 1); // passe au round suivant
+    } else {
+      setRound(1);
+      setGameOver(true);
+      setShow(!show);
+    }
   };
 
   return (
@@ -82,7 +94,7 @@ function Playground() {
         >
           <div className="playgroundBackground">
             <section className="playgroundContent">
-              <h3 className="titleRound">Round 1</h3>
+              <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
                   {displaySpell !== "" && (
@@ -97,7 +109,11 @@ function Playground() {
                   )}
                 </div>
                 <div className="nextButton">
-                  <button type="button" className="btn-primary">
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={handleNextRound}
+                  >
                     Next
                   </button>
                 </div>
@@ -115,14 +131,14 @@ function Playground() {
             <div className="modal">
               <div className="modalText">
                 <h3 className="title-playground">
-                  Here’s your battle ground !
+                  {gameOver ? "Game Over" : "Here’s your battle ground !"}
                 </h3>
                 <button
                   type="button"
                   className="btn-third"
                   onClick={handleModal}
                 >
-                  Play
+                  {gameOver ? "Play Again" : "Play"}
                 </button>
               </div>
             </div>
