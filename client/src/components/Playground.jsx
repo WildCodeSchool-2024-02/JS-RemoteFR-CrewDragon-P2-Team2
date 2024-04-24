@@ -3,8 +3,65 @@ import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCard";
 import field1 from "../assets/images/laboratory.webp";
 
-
 function Playground() {
+  const [spells, setSpells] = useState([
+    {
+      id: 1,
+      name: "Protego",
+      damage: 0,
+      isUsed: false,
+      isUsedComputer: false,
+    },
+    {
+      id: 2,
+      name: "Confringo",
+      damage: -50,
+      isUsed: false,
+      isUsedComputer: false,
+    },
+    {
+      id: 3,
+      name: "Stupéfix",
+      damage: -25,
+      isUsed: false,
+      isUsedComputer: false,
+    },
+    {
+      id: 4,
+      name: "Slugulus Eructo",
+      damage: -10,
+      isUsed: false,
+      isUsedComputer: false,
+    },
+  ]);
+  // On affiche le sort du user et du computer
+  const [style, setStyle] = useState("");
+  const [displaySpell, setDisplaySpell] = useState("");
+  const [displayRandomSpell, setDisplayRandomSpell] = useState("");
+
+  const handleClick = (selectedSpell) => {
+    // on filtre le sort selectionné
+    const updateSpells = spells.map((spell) =>
+      spell.name === selectedSpell ? { ...spell, isUsed: true } : spell
+    );
+
+    // on crée un tableau filtré pour choisir un random de l'adversaire
+    const spellsFilter = updateSpells.filter(
+      (spell) => spell.isUsedComputer === false
+    );
+    // On trouve un sort random parmi les disponibles
+    const randomSpell =
+      spellsFilter[Math.floor(Math.random() * spellsFilter.length)];
+    // On rends le sort selectionné au hasard, plus utilisable
+    randomSpell.isUsedComputer = true;
+
+    setDisplayRandomSpell(randomSpell.name);
+    setSpells(updateSpells);
+    setDisplaySpell(selectedSpell);
+    setStyle("bg-dabrown");
+  };
+
+  // On affiche la modal par défaut
   const [show, setShow] = useState(true);
   const handleModal = () => {
     setShow(!show);
@@ -28,12 +85,16 @@ function Playground() {
               <h3 className="titleRound">Round 1</h3>
               <article className="layoutPlayers">
                 <div className="player">
-                  <p className="btn-third">Protego</p>
+                  {displaySpell !== "" && (
+                    <p className={`btn-third ${style}`}>{displaySpell}</p>
+                  )}
                   <CharacterCard />
                 </div>
                 <div className="player">
                   <CharacterCard />
-                  <p className="btn-third">Protego</p>
+                  {displayRandomSpell !== "" && (
+                    <p className="btn-third">{displayRandomSpell}</p>
+                  )}
                 </div>
                 <div className="nextButton">
                   <button type="button" className="btn-primary">
@@ -42,7 +103,11 @@ function Playground() {
                 </div>
               </article>
               <article className="spellsSelection">
-                <ButtonSpells />
+                <ButtonSpells
+                  spells={spells}
+                  setSpells={setSpells}
+                  handleClick={handleClick}
+                />
               </article>
             </section>
           </div>
