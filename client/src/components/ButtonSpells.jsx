@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function ButtonSpells({ spells, handleClick }) {
+function ButtonSpells({ spells, handleSpell, disableSpell }) {
   return (
     <>
       {spells.map((spell) => (
@@ -8,8 +8,8 @@ function ButtonSpells({ spells, handleClick }) {
           className={spell.isUsed === false ? "btn-primary" : "btn-secondary"}
           key={spell.id}
           type="button"
-          disabled={spell.isUsed}
-          onClick={() => handleClick(spell.name)}
+          disabled={spell.isUsed || disableSpell}
+          onClick={() => handleSpell(spell.name)}
         >
           {spell.name}
         </button>
@@ -20,7 +20,9 @@ function ButtonSpells({ spells, handleClick }) {
 
 ButtonSpells.propTypes = {
   // eslint-disable-next-line react/require-default-props
-  handleClick: PropTypes.func,
+  handleSpell: PropTypes.func,
+  // eslint-disable-next-line react/require-default-props
+  disableSpell: PropTypes.bool,
   spells: PropTypes.shape({
     map: PropTypes.func,
   }).isRequired,
