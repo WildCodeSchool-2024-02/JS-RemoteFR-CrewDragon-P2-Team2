@@ -187,7 +187,7 @@
   @media screen and (min-width: 992px) {
     /* first sort desktop */
     .player:nth-child(1) p {
-      @apply absolute left-[20%] top-[25%];
+      @apply absolute left-[70%] top-[25%];
     }
     /* second sort desktop */
     .player:nth-child(2) p {

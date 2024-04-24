@@ -18,6 +18,8 @@ export default {
       boxShadow: {
         area: "inset 13px 13px 26px #ccc2a8, inset -13px -13px 26px #faf9f8",
         crd: "7px 7px 14px #ccc2a8, -7px -7px 14px #faf9f8",
+        btnshadow:
+          "inset 7px 7px 14px #00000080, inset -7px -7px 14px #faf9f880",
       },
       borderRadius: {
         "4xl": "25px",
