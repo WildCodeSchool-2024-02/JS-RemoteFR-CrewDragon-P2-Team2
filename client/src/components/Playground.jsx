@@ -38,15 +38,14 @@ function Playground() {
   // On toogle les sorts desable à chaque round
   const [disableSpell, setDisableSpell] = useState(false);
   // On affiche les sorts et le button next à chaque round
-  const [hide, setHide] = useState(false);
+  const [showSpell, setShowSpell] = useState(false);
   // On affiche le sort du user et du computer
-  const [style, setStyle] = useState("");
   const [displaySpell, setDisplaySpell] = useState("");
   const [displayRandomSpell, setDisplayRandomSpell] = useState("");
 
   const handleSpell = (selectedSpell) => {
     setDisableSpell(!disableSpell);
-    setHide(!hide);
+    setShowSpell(!showSpell);
     // on filtre le sort selectionné
     const updateSpells = spells.map((spell) =>
       spell.name === selectedSpell ? { ...spell, isUsed: true } : spell
@@ -65,26 +64,25 @@ function Playground() {
     setDisplayRandomSpell(randomSpell.name);
     setSpells(updateSpells);
     setDisplaySpell(selectedSpell);
-    setStyle("bg-dabrown");
   };
 
   // On affiche la modal par défaut
-  const [showModal, setshowModal] = useState(true);
+  const [showModal, setShowModal] = useState(true);
   const [round, setRound] = useState(1);
   const [gameOver, setGameOver] = useState(false);
   const handleModal = () => {
-    setshowModal(!showModal);
+    setShowModal(!showModal);
   };
 
   const handleNextRound = () => {
     setDisableSpell(!disableSpell); // re-rends les sorts cliquables au round
-    setHide(!hide); // Cache le button de next round
+    setShowSpell(!showSpell); // Cache le button de next round
     if (round < 3) {
       setRound(round + 1); // passe au round suivant
     } else {
       setRound(1); // on reset le round à 1
       setGameOver(true); // On conditionne l'affichage du résultat de la modal
-      setshowModal(!showModal); // On réaffiche la modal
+      setShowModal(!showModal); // On réaffiche la modal
       setSpells(defaultSpells); // On reset les sorts
     }
   };
@@ -107,25 +105,32 @@ function Playground() {
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
-                  {hide === true && (
-                    <p className={`btn-third ${style}`}>{displaySpell}</p>
-                  )}
                   <CharacterCard />
+                  <p
+                    className={`btn-third absolute z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out translate-x-full opacity-100" : "transform transitions-all duration-500 ease-in_out opacity-0"}`}
+                  >
+                    {displaySpell}
+                  </p>
                 </div>
                 <div className="player">
                   <CharacterCard />
-                  {hide && <p className="btn-third">{displayRandomSpell}</p>}
+                  {showSpell && (
+                    <p className="btn-third">{displayRandomSpell}</p>
+                  )}
                 </div>
                 <div className="nextButton">
-                  {hide === true && (
-                    <button
-                      type="button"
-                      className="btn-primary"
-                      onClick={handleNextRound}
-                    >
-                      Next
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    className={
+                      showSpell
+                        ? "btn-primary"
+                        : "bg-grey font-quicksand rounded-4xl px-4 py-4 shadow-btnshadow"
+                    }
+                    disabled={!showSpell}
+                    onClick={handleNextRound}
+                  >
+                    Next
+                  </button>
                 </div>
               </article>
               <article className="spellsSelection">
@@ -139,7 +144,7 @@ function Playground() {
             </section>
           </div>
           {showModal && (
-            <div className="modal">
+            <div className="modal z-20">
               <div className="modalText">
                 <h3 className="title-playground">
                   {gameOver ? "Game Over !" : "Here’s your battle ground !"}
