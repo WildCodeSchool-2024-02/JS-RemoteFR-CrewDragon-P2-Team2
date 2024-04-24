@@ -1,10 +1,10 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import ButtonSpells from "./ButtonSpells";
-import CharacterCard from "./CharacterCard";
+import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
 
-
-function Playground() {
+function Playground({ playerChoose, computerPlayer }) {
   const [show, setShow] = useState(true);
   const handleModal = () => {
     setShow(!show);
@@ -29,10 +29,14 @@ function Playground() {
               <article className="layoutPlayers">
                 <div className="player">
                   <p className="btn-third">Protego</p>
-                  <CharacterCard />
+                  <CharacterCard fighter={playerChoose} />
                 </div>
                 <div className="player">
-                  <CharacterCard />
+                  {show ? (
+                    <CharacterCard />
+                  ) : (
+                    <CharacterCard fighter={computerPlayer} />
+                  )}
                   <p className="btn-third">Protego</p>
                 </div>
                 <div className="nextButton">
@@ -67,5 +71,9 @@ function Playground() {
     </section>
   );
 }
+Playground.propTypes = {
+  playerChoose: PropTypes.func.isRequired,
+  computerPlayer: PropTypes.func.isRequired,
+};
 
 export default Playground;

@@ -50,7 +50,7 @@
   }
 
   .characterCard img {
-    @apply w-full rounded-6xl;
+    @apply max-w-60 rounded-6xl;
   }
   /* Navbar */
   .burger-menu {
