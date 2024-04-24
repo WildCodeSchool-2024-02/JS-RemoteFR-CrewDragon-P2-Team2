@@ -4,14 +4,10 @@ import CharacterCard from "./CharacterCard";
 import field1 from "../assets/images/laboratory.webp";
 
 function Playground() {
-  const [show, setShow] = useState(true);
   const [playClicked, setPlayClicked] = useState(false);
   const [round, setRound] = useState(1);
   const [gameOver, setGameOver] = useState(false);
 
-  const handleModal = () => {
-    setShow(!show);
-  };
   const handlePlayClick = () => {
     setPlayClicked(true);
   };
@@ -70,7 +66,7 @@ function Playground() {
                 </article>
               </section>
             </div>
-            {show && !playClicked && (
+            {!playClicked && (
               <div className="modal">
                 <div className="modalText">
                   <h3 className="title-playground">
