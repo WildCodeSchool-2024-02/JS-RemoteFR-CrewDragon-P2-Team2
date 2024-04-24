@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import CharactersSelectionCard from "./CharactersSelectionCard";
 
-function CharactersSelection() {
+function CharactersSelection({ setPlayerChoose, setComputerPlayer }) {
   const [charactersData, setCharactersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,12 +30,20 @@ function CharactersSelection() {
     <section className="py-4 w-80 mx-auto flex flex-col items-center">
       <h2 className="title-sections">Choose your character</h2>
       {!isLoading ? (
-        <CharactersSelectionCard characters={charactersData} />
+        <CharactersSelectionCard
+          characters={charactersData}
+          setPlayerChoose={setPlayerChoose}
+          setComputerPlayer={setComputerPlayer}
+        />
       ) : (
         <p>Loading...</p>
       )}
     </section>
   );
 }
+CharactersSelection.propTypes = {
+  setPlayerChoose: PropTypes.func.isRequired,
+  setComputerPlayer: PropTypes.func.isRequired,
+};
 
 export default CharactersSelection;

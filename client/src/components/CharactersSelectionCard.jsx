@@ -1,11 +1,35 @@
 import PropTypes from "prop-types";
 
-function CharactersSelectionCard({ characters }) {
+function CharactersSelectionCard({
+  characters,
+  setPlayerChoose,
+  setComputerPlayer,
+}) {
+  const handleClick = (playerChoose) => {
+    setPlayerChoose({ ...playerChoose, character: playerChoose.name });
+
+    const computers = characters.filter(
+      (character) => character !== playerChoose
+    );
+
+    const rand = Math.floor(Math.random() * computers.length);
+
+    setComputerPlayer({
+      ...computers[rand],
+      character: computers[rand].name,
+    });
+  };
+
   return (
     <article className="containerNeumorphism">
       {characters.map((character, index) => (
         <>
-          <input type="radio" name="slide" id={`c${index + 1}`} />
+          <input
+            type="radio"
+            name="slide"
+            key={`input ${index + 1}`}
+            id={`c${index + 1}`}
+          />
           <label
             htmlFor={`c${index + 1}`}
             className="characterCardSelection"
@@ -20,7 +44,9 @@ function CharactersSelectionCard({ characters }) {
             <div className="modalCharacterSelection">
               <p className="font-bold">{character.name}</p>
               <p>{character.house}</p>
-              <button type="button">Choose</button>
+              <button onClick={() => handleClick(character)} type="button">
+                Choose {character.name}
+              </button>
             </div>
           </label>
         </>
@@ -32,7 +58,10 @@ function CharactersSelectionCard({ characters }) {
 CharactersSelectionCard.propTypes = {
   characters: PropTypes.shape({
     map: PropTypes.func,
+    filter: PropTypes.func,
   }).isRequired,
+  setPlayerChoose: PropTypes.string.isRequired,
+  setComputerPlayer: PropTypes.func.isRequired,
 };
 
 export default CharactersSelectionCard;

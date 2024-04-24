@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import ButtonSpells from "./ButtonSpells";
-import CharacterCard from "./CharacterCard";
+import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
 
-function Playground() {
+function Playground({ playerChoose, computerPlayer }) {
   const defaultSpells = [
     {
       id: 1,
@@ -105,7 +106,7 @@ function Playground() {
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
-                  <CharacterCard />
+                  <CharacterCard fighter={playerChoose} />
                   <p
                     className={`btn-third absolute z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out translate-x-full opacity-100" : "transform transitions-all duration-500 ease-in_out opacity-0"}`}
                   >
@@ -113,7 +114,11 @@ function Playground() {
                   </p>
                 </div>
                 <div className="player">
-                  <CharacterCard />
+                  {showModal ? (
+                    <CharacterCard />
+                  ) : (
+                    <CharacterCard fighter={computerPlayer} />
+                  )}
                   {showSpell && (
                     <p className="btn-third">{displayRandomSpell}</p>
                   )}
@@ -164,5 +169,9 @@ function Playground() {
     </section>
   );
 }
+Playground.propTypes = {
+  playerChoose: PropTypes.func.isRequired,
+  computerPlayer: PropTypes.func.isRequired,
+};
 
 export default Playground;
