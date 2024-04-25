@@ -9,6 +9,8 @@ function Playground({
   computerPlayer,
   setLockPlayerChoose,
   lockPlayerChoose,
+  setResetPlayer,
+  resetPlayer,
 }) {
   const defaultSpells = [
     {
@@ -103,7 +105,7 @@ function Playground({
   const handleModal = () => {
     // Au clic du bouton de la modal
     setShowModal(!showModal); // La modale disparait
-    setLockPlayerChoose(!lockPlayerChoose);
+    setLockPlayerChoose(!lockPlayerChoose); // Bloque le choix du personnage une fois le jeu lancé
   };
 
   const handleNextRound = () => {
@@ -114,11 +116,13 @@ function Playground({
       setRound(round + 1); // passe au round suivant
     } else {
       setRound(1); // Reset le round à 1
-      setGameOver(true); // Conditionne l'affichage du résultat de la modal
+      setGameOver(true); // Conditionne l'affichage du résultat de la modalCharacterSelection
+      setResetPlayer(true); // Rends le choix du perso obligatoire au jeu suivant
       setShowModal(!showModal); // La modal apparait
       setSpells(defaultSpells); // Les sorts par défauts sont rechargés
       setHealthComputer(100); // Les santés par défaut sont rechargées
       setHealthPlayer(100);
+      setLockPlayerChoose(false); // Unlock le choix des personnages
 
       if (healthComputer < healthPlayer) {
         setWinner(`The Winner is ${playerChoose.name}`);
@@ -130,7 +134,6 @@ function Playground({
     }
   };
   return (
-    
     <section className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center">
       <h2 className="title-sections">... And cast your spells !</h2>
       <article className="containerPlayground">
@@ -201,14 +204,16 @@ function Playground({
                 <h3 className="title-playground">
                   {gameOver ? winner : "Here’s your battle ground !"}
                 </h3>
-                {playerChoose === undefined ? (
+                {playerChoose === undefined || resetPlayer === true ? (
                   <button
                     type="button"
                     className="btn-third"
                     onClick={handleModal}
                     disabled
                   >
-                    {gameOver ? "Play Again" : "Play"}
+                    {playerChoose === undefined || resetPlayer === true
+                      ? "Choose a Player"
+                      : "Play"}
                   </button>
                 ) : (
                   <button
@@ -216,10 +221,9 @@ function Playground({
                     className="btn-third"
                     onClick={handleModal}
                   >
-                    {gameOver ? "Play Again" : "Play"}
+                    {playerChoose === undefined || resetPlayer === true ? "Choose a Player" : "Play"}
                   </button>
                 )}
-                
               </div>
             </div>
           )}
@@ -233,6 +237,8 @@ Playground.propTypes = {
   computerPlayer: PropTypes.func.isRequired,
   setLockPlayerChoose: PropTypes.func.isRequired,
   lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
+  resetPlayer: PropTypes.bool.isRequired,
 };
 
 export default Playground;

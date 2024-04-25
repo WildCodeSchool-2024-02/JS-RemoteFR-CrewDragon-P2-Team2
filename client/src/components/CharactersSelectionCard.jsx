@@ -5,9 +5,11 @@ function CharactersSelectionCard({
   setPlayerChoose,
   setComputerPlayer,
   lockPlayerChoose,
+  setResetPlayer,
 }) {
   const handleClick = (playerChoose) => {
     setPlayerChoose({ ...playerChoose, character: playerChoose.name });
+    setResetPlayer(false);
 
     const computers = characters.filter(
       (character) => character !== playerChoose
@@ -54,7 +56,7 @@ function CharactersSelectionCard({
                   {character.house} toto
                 </p>
                 <button onClick={() => handleClick(character)} type="button">
-                  Choose {lockPlayerChoose}
+                  Choose
                 </button>
               </div>
             )}
@@ -73,6 +75,7 @@ CharactersSelectionCard.propTypes = {
   setPlayerChoose: PropTypes.string.isRequired,
   setComputerPlayer: PropTypes.func.isRequired,
   lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
 };
 
 export default CharactersSelectionCard;

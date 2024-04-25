@@ -6,6 +6,7 @@ function CharactersSelection({
   setPlayerChoose,
   setComputerPlayer,
   lockPlayerChoose,
+  setResetPlayer,
 }) {
   const [charactersData, setCharactersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +22,7 @@ function CharactersSelection({
       .then((data) => {
         const charactersWithImage = data
           .filter((character) => character.image)
-          .slice(0, 12);
+          .slice(0, 20);
         setCharactersData(charactersWithImage);
         setIsLoading(false);
       })
@@ -39,6 +40,7 @@ function CharactersSelection({
           setPlayerChoose={setPlayerChoose}
           setComputerPlayer={setComputerPlayer}
           lockPlayerChoose={lockPlayerChoose}
+          setResetPlayer={setResetPlayer}
         />
       ) : (
         <p>Loading...</p>
@@ -50,6 +52,7 @@ CharactersSelection.propTypes = {
   setPlayerChoose: PropTypes.func.isRequired,
   setComputerPlayer: PropTypes.func.isRequired,
   lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
 };
 
 export default CharactersSelection;
