@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
@@ -12,6 +13,7 @@ function Playground({
   setResetPlayer,
   resetPlayer,
 }) {
+  const location = useLocation(); 
   const defaultSpells = [
     {
       id: 1,
@@ -50,6 +52,8 @@ function Playground({
   const [healthComputer, setHealthComputer] = useState(100); // Par défaut santé du computer
   const [healthPlayer, setHealthPlayer] = useState(100); // Par défaut santé du joueur
   const [winner, setWinner] = useState(); // Stocker le gagnant du combat
+  
+  
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -124,6 +128,10 @@ function Playground({
       setHealthPlayer(100);
       setLockPlayerChoose(false); // Unlock le choix des personnages
 
+      setTimeout(() => {
+        window.location.href = `${location.pathname}#chara_select`;
+      }, 2000); // Retour à la section des characters
+
       if (healthComputer < healthPlayer) {
         setWinner(`The Winner is ${playerChoose.name}`);
       } else if (healthComputer > healthPlayer) {
@@ -134,7 +142,10 @@ function Playground({
     }
   };
   return (
-    <section className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center">
+    <section
+      className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center"
+      id="play_game"
+    >
       <h2 className="title-sections">... And cast your spells !</h2>
       <article className="containerPlayground">
         <div
@@ -221,7 +232,9 @@ function Playground({
                     className="btn-third"
                     onClick={handleModal}
                   >
-                    {playerChoose === undefined || resetPlayer === true ? "Choose a Player" : "Play"}
+                    {playerChoose === undefined || resetPlayer === true
+                      ? "Choose a Player"
+                      : "Play"}
                   </button>
                 )}
               </div>
