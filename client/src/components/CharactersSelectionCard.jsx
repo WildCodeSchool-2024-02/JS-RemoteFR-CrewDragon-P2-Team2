@@ -25,7 +25,6 @@ function CharactersSelectionCard({
     Hufflepuff: "text-hufflepuff",
     Ravenclaw: "text-ravenclaw",
   };
-
   return (
     <article className="containerNeumorphism">
       {characters.map((character, index) => (

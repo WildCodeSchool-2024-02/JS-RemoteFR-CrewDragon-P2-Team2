@@ -123,8 +123,8 @@ function Playground({ playerChoose, computerPlayer }) {
       }
     }
   };
-
   return (
+    
     <section className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center">
       <h2 className="title-sections">... And cast your spells !</h2>
       <article className="containerPlayground">
@@ -195,13 +195,25 @@ function Playground({ playerChoose, computerPlayer }) {
                 <h3 className="title-playground">
                   {gameOver ? winner : "Here’s your battle ground !"}
                 </h3>
-                <button
-                  type="button"
-                  className="btn-third"
-                  onClick={handleModal}
-                >
-                  {gameOver ? "Play Again" : "Play"}
-                </button>
+                {playerChoose === undefined ? (
+                  <button
+                    type="button"
+                    className="btn-third"
+                    onClick={handleModal}
+                    disabled
+                  >
+                    {gameOver ? "Play Again" : "Play"}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn-third"
+                    onClick={handleModal}
+                  >
+                    {gameOver ? "Play Again" : "Play"}
+                  </button>
+                )}
+                
               </div>
             </div>
           )}
