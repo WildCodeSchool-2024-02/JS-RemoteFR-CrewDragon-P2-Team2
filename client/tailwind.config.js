@@ -8,6 +8,10 @@ export default {
       brown: "#CCC2A8",
       dabrown: "#282121",
       grey: "#8E8983",
+      gryffindor: "#7F0909",
+      slytherin: "#0D6217",
+      hufflepuff: "#EEE117",
+      ravenclaw: "#000A90",
     },
     fontFamily: {
       quicksand: ["Quicksand", "sans-serif"],
@@ -18,6 +22,8 @@ export default {
       boxShadow: {
         area: "inset 13px 13px 26px #ccc2a8, inset -13px -13px 26px #faf9f8",
         crd: "7px 7px 14px #ccc2a8, -7px -7px 14px #faf9f8",
+        btnshadow:
+          "inset 7px 7px 14px #00000080, inset -7px -7px 14px #faf9f880",
       },
       borderRadius: {
         "4xl": "25px",

@@ -1,14 +1,46 @@
 import PropTypes from "prop-types";
 
-function CharactersSelectionCard({ characters }) {
+function CharactersSelectionCard({
+  characters,
+  setPlayerChoose,
+  setComputerPlayer,
+  lockPlayerChoose,
+  setResetPlayer,
+}) {
+  const handleClick = (playerChoose) => {
+    setPlayerChoose({ ...playerChoose, character: playerChoose.name });
+    setResetPlayer(false);
+
+    const computers = characters.filter(
+      (character) => character !== playerChoose
+    );
+
+    const rand = Math.floor(Math.random() * computers.length);
+
+    setComputerPlayer({
+      ...computers[rand],
+      character: computers[rand].name,
+    });
+  };
+  const houseClasses = {
+    Gryffindor: "text-gryffindor",
+    Slytherin: "text-slytherin",
+    Hufflepuff: "text-hufflepuff",
+    Ravenclaw: "text-ravenclaw",
+  };
   return (
-    <>
+    <article className="containerNeumorphism">
       {characters.map((character, index) => (
         <>
-          <input type="radio" name="slide" id={`c${index + 1}`} />
+          <input
+            type="radio"
+            name="slide"
+            key={`input ${index + 1}`}
+            id={`c${index + 1}`}
+          />
           <label
             htmlFor={`c${index + 1}`}
-            className="ChooseCharacterCard"
+            className="characterCardSelection"
             style={{
               background: `url(${character.image})`,
               backgroundPosition: "center",
@@ -17,22 +49,33 @@ function CharactersSelectionCard({ characters }) {
             }}
           >
             <span>label</span>
-            <div className="modaleChooseCharacter">
-              <p className="font-bold">{character.name}</p>
-              <p>{character.house}</p>
-              <button type="submit">Choose</button>
-            </div>
+            {lockPlayerChoose === false && (
+              <div className="modalCharacterSelection">
+                <p className="font-bold">{character.name}</p>
+                <p className={houseClasses[character.house]}>
+                  {character.house} toto
+                </p>
+                <button onClick={() => handleClick(character)} type="button">
+                  Choose
+                </button>
+              </div>
+            )}
           </label>
         </>
       ))}
-    </>
+    </article>
   );
 }
 
 CharactersSelectionCard.propTypes = {
   characters: PropTypes.shape({
     map: PropTypes.func,
+    filter: PropTypes.func,
   }).isRequired,
+  setPlayerChoose: PropTypes.string.isRequired,
+  setComputerPlayer: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
 };
 
 export default CharactersSelectionCard;
