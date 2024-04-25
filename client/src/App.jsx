@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 function App() {
   const [playerChoose, setPlayerChoose] = useState({});
   const [computerPlayer, setComputerPlayer] = useState({});
-
+  const [lockPlayerChoose, setLockPlayerChoose] = useState(false);
   return (
     <>
       <header>
@@ -22,8 +22,10 @@ function App() {
         <CharactersSelection
           setPlayerChoose={setPlayerChoose}
           setComputerPlayer={setComputerPlayer}
+          lockPlayerChoose={lockPlayerChoose}
         />
         <Playground
+          setLockPlayerChoose={setLockPlayerChoose}
           playerChoose={playerChoose}
           computerPlayer={computerPlayer}
         />

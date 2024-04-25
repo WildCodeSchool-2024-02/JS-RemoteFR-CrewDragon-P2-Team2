@@ -4,7 +4,12 @@ import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
 
-function Playground({ playerChoose, computerPlayer }) {
+function Playground({
+  playerChoose,
+  computerPlayer,
+  setLockPlayerChoose,
+  lockPlayerChoose,
+}) {
   const defaultSpells = [
     {
       id: 1,
@@ -98,6 +103,7 @@ function Playground({ playerChoose, computerPlayer }) {
   const handleModal = () => {
     // Au clic du bouton de la modal
     setShowModal(!showModal); // La modale disparait
+    setLockPlayerChoose(!lockPlayerChoose);
   };
 
   const handleNextRound = () => {
@@ -213,6 +219,8 @@ function Playground({ playerChoose, computerPlayer }) {
 Playground.propTypes = {
   playerChoose: PropTypes.func.isRequired,
   computerPlayer: PropTypes.func.isRequired,
+  setLockPlayerChoose: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
 };
 
 export default Playground;

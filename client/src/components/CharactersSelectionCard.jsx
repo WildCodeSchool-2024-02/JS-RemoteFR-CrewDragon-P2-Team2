@@ -4,6 +4,7 @@ function CharactersSelectionCard({
   characters,
   setPlayerChoose,
   setComputerPlayer,
+  lockPlayerChoose,
 }) {
   const handleClick = (playerChoose) => {
     setPlayerChoose({ ...playerChoose, character: playerChoose.name });
@@ -25,7 +26,6 @@ function CharactersSelectionCard({
     Hufflepuff: "text-hufflepuff",
     Ravenclaw: "text-ravenclaw",
   };
-
   return (
     <article className="containerNeumorphism">
       {characters.map((character, index) => (
@@ -47,13 +47,17 @@ function CharactersSelectionCard({
             }}
           >
             <span>label</span>
-            <div className="modalCharacterSelection">
-              <p className="font-bold">{character.name}</p>
-              <p className={houseClasses[character.house]}>{character.house}</p>
-              <button onClick={() => handleClick(character)} type="button">
-                Choose
-              </button>
-            </div>
+            {lockPlayerChoose === false && (
+              <div className="modalCharacterSelection">
+                <p className="font-bold">{character.name}</p>
+                <p className={houseClasses[character.house]}>
+                  {character.house} toto
+                </p>
+                <button onClick={() => handleClick(character)} type="button">
+                  Choose {lockPlayerChoose}
+                </button>
+              </div>
+            )}
           </label>
         </>
       ))}
@@ -68,6 +72,7 @@ CharactersSelectionCard.propTypes = {
   }).isRequired,
   setPlayerChoose: PropTypes.string.isRequired,
   setComputerPlayer: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
 };
 
 export default CharactersSelectionCard;
