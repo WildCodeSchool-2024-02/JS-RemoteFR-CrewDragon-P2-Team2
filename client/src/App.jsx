@@ -8,7 +8,7 @@ import ScoreBoard from "./components/ScoreBoard";
 import Footer from "./components/Footer";
 
 function App() {
-  const [playerChoose, setPlayerChoose] = useState({});
+  const [playerChoose, setPlayerChoose] = useState();
   const [computerPlayer, setComputerPlayer] = useState({});
 
   return (
