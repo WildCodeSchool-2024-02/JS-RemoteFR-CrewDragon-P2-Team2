@@ -11,6 +11,7 @@ function App() {
   const [playerChoose, setPlayerChoose] = useState();
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false);
+  const [resetPlayer, setResetPlayer] = useState(false)
   return (
     <>
       <header>
@@ -23,9 +24,12 @@ function App() {
           setPlayerChoose={setPlayerChoose}
           setComputerPlayer={setComputerPlayer}
           lockPlayerChoose={lockPlayerChoose}
+          setResetPlayer={setResetPlayer}
         />
         <Playground
           setLockPlayerChoose={setLockPlayerChoose}
+          setResetPlayer={setResetPlayer}
+          resetPlayer={resetPlayer}
           playerChoose={playerChoose}
           computerPlayer={computerPlayer}
         />
