@@ -2,7 +2,11 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import CharactersSelectionCard from "./CharactersSelectionCard";
 
-function CharactersSelection({ setPlayerChoose, setComputerPlayer }) {
+function CharactersSelection({
+  setPlayerChoose,
+  setComputerPlayer,
+  lockPlayerChoose,
+}) {
   const [charactersData, setCharactersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,6 +38,7 @@ function CharactersSelection({ setPlayerChoose, setComputerPlayer }) {
           characters={charactersData}
           setPlayerChoose={setPlayerChoose}
           setComputerPlayer={setComputerPlayer}
+          lockPlayerChoose={lockPlayerChoose}
         />
       ) : (
         <p>Loading...</p>
@@ -44,6 +49,7 @@ function CharactersSelection({ setPlayerChoose, setComputerPlayer }) {
 CharactersSelection.propTypes = {
   setPlayerChoose: PropTypes.func.isRequired,
   setComputerPlayer: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
 };
 
 export default CharactersSelection;
