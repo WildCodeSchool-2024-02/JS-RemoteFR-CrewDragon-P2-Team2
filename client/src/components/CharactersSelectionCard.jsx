@@ -57,7 +57,7 @@ function CharactersSelectionCard({
               <div className="modalCharacterSelection">
                 <p className="font-bold">{character.name}</p>
                 <p className={houseClasses[character.house]}>
-                  {character.house} toto
+                  {character.house}
                 </p>
                 <button onClick={() => handleClick(character)} type="button">
                   Choose

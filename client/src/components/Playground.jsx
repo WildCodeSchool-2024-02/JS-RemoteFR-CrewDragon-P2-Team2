@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
@@ -13,7 +13,7 @@ function Playground({
   setResetPlayer,
   resetPlayer,
 }) {
-  const location = useLocation(); 
+  const location = useLocation();
   const defaultSpells = [
     {
       id: 1,
@@ -52,8 +52,25 @@ function Playground({
   const [healthComputer, setHealthComputer] = useState(100); // Par défaut santé du computer
   const [healthPlayer, setHealthPlayer] = useState(100); // Par défaut santé du joueur
   const [winner, setWinner] = useState(); // Stocker le gagnant du combat
-  
-  
+  const [results, setResults] = useState([
+    {
+      score: 0,
+      player: {
+        name: "",
+        image: "",
+        health: 100,
+      },
+      computer: {
+        name: "",
+        image: "",
+        health: 100,
+      },
+    },
+  ]); // For Storing local host
+
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]); // Set Local Host
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -127,6 +144,21 @@ function Playground({
       setHealthComputer(100); // Les santés par défaut sont rechargées
       setHealthPlayer(100);
       setLockPlayerChoose(false); // Unlock le choix des personnages
+      setResults([
+        {
+          score: healthPlayer - healthComputer,
+          player: {
+            name: `${playerChoose.name}`,
+            image: `${playerChoose.image}`,
+            health: healthPlayer,
+          },
+          computer: {
+            name: `${computerPlayer.name}`,
+            image: `${computerPlayer.image}`,
+            health: healthComputer,
+          },
+        },
+      ]); // MAJ Local Host
 
       setTimeout(() => {
         window.location.href = `${location.pathname}#chara_select`;
