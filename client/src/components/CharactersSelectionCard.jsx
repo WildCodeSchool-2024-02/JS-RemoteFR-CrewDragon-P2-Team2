@@ -19,6 +19,12 @@ function CharactersSelectionCard({
       character: computers[rand].name,
     });
   };
+  const houseClasses = {
+    Gryffindor: "text-gryffindor",
+    Slytherin: "text-slytherin",
+    Hufflepuff: "text-hufflepuff",
+    Ravenclaw: "text-ravenclaw",
+  };
 
   return (
     <article className="containerNeumorphism">
@@ -43,9 +49,9 @@ function CharactersSelectionCard({
             <span>label</span>
             <div className="modalCharacterSelection">
               <p className="font-bold">{character.name}</p>
-              <p>{character.house}</p>
+              <p className={houseClasses[character.house]}>{character.house}</p>
               <button onClick={() => handleClick(character)} type="button">
-                Choose {character.name}
+                Choose
               </button>
             </div>
           </label>

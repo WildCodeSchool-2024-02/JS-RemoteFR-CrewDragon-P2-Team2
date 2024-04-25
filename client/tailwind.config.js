@@ -8,6 +8,10 @@ export default {
       brown: "#CCC2A8",
       dabrown: "#282121",
       grey: "#8E8983",
+      gryffindor: "#7F0909",
+      slytherin: "#0D6217",
+      hufflepuff: "#EEE117",
+      ravenclaw: "#000A90",
     },
     fontFamily: {
       quicksand: ["Quicksand", "sans-serif"],

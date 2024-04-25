@@ -147,10 +147,10 @@
   }
 
   .healthBar {
-    @apply w-[90%] border rounded-6xl border-solid border-dabrown;
+    @apply w-[60%] border rounded-6xl border-solid border-dabrown;
   }
   .health {
-    @apply float-right w-6/12 h-2.5 bg-dabrown rounded-6xl;
+    @apply float-right w-full h-2.5 bg-dabrown rounded-6xl;
   }
 
   .layoutPlayers {

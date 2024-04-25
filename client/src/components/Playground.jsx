@@ -16,75 +16,111 @@ function Playground({ playerChoose, computerPlayer }) {
     {
       id: 2,
       name: "Confringo",
-      damage: -50,
+      damage: 50,
       isUsed: false,
       isUsedComputer: false,
     },
     {
       id: 3,
       name: "Stupéfix",
-      damage: -25,
+      damage: 25,
       isUsed: false,
       isUsedComputer: false,
     },
     {
       id: 4,
       name: "Slugulus Eructo",
-      damage: -10,
+      damage: 10,
       isUsed: false,
       isUsedComputer: false,
     },
   ];
-  const [spells, setSpells] = useState(defaultSpells);
-  // On toogle les sorts desable à chaque round
-  const [disableSpell, setDisableSpell] = useState(false);
-  // On affiche les sorts et le button next à chaque round
-  const [showSpell, setShowSpell] = useState(false);
-  // On affiche le sort du user et du computer
-  const [displaySpell, setDisplaySpell] = useState("");
-  const [displayRandomSpell, setDisplayRandomSpell] = useState("");
+  const [spells, setSpells] = useState(defaultSpells); // Par défaut les sorts disponibles les suivants
+  const [disableSpell, setDisableSpell] = useState(false); // Par défaut les sorts sont ne sont pas disabled
+  const [showSpell, setShowSpell] = useState(false); // N'affiche pas les sorts jetés et le button next par défaut
+  const [displaySpell, setDisplaySpell] = useState(""); // Affiche le sort du user
+  const [displayRandomSpell, setDisplayRandomSpell] = useState(""); // Affiche le sort du computer
+  const [healthComputer, setHealthComputer] = useState(100); // Par défaut santé du computer
+  const [healthPlayer, setHealthPlayer] = useState(100); // Par défaut santé du joueur
+  const [winner, setWinner] = useState(); // Stocker le gagnant du combat
 
   const handleSpell = (selectedSpell) => {
-    setDisableSpell(!disableSpell);
-    setShowSpell(!showSpell);
-    // on filtre le sort selectionné
+    // Au clic du selectedSpell
+    setDisableSpell(!disableSpell); // Les sorts sont disabled
+    setShowSpell(!showSpell); // Affiche les sorts jetés et le button next round
+
     const updateSpells = spells.map((spell) =>
       spell.name === selectedSpell ? { ...spell, isUsed: true } : spell
-    );
+    ); // Dans un nouveau tableau : MAJ du selectedSpell parmi defaultSpells
 
-    // on crée un tableau filtré pour choisir un random de l'adversaire
     const spellsFilter = updateSpells.filter(
       (spell) => spell.isUsedComputer === false
-    );
-    // On trouve un sort random parmi les disponibles
-    const randomSpell =
-      spellsFilter[Math.floor(Math.random() * spellsFilter.length)];
-    // On rends le sort selectionné au hasard, plus utilisable
-    randomSpell.isUsedComputer = true;
+    ); // Dans un nouveau tableau : filtre du tableau pour récupérer les sorts non utilisés par le computer
 
+    const randomSpell =
+      spellsFilter[Math.floor(Math.random() * spellsFilter.length)]; // Selection au hasard d'un sort parmi les disponibles
+    randomSpell.isUsedComputer = true; // Le sort selectionné au hasard ne devient plus utilisable pour la suite
+
+    const indexSpellPlayer = defaultSpells.findIndex(
+      (spell) => selectedSpell === spell.name
+    ); // Obtenir l'index du sort jeté pour récuperer le .damage
+
+    if (selectedSpell !== "Protego") {
+      if (randomSpell.name !== "Protego") {
+        setHealthComputer(
+          healthComputer - defaultSpells[indexSpellPlayer].damage
+        );
+      } else {
+        setHealthComputer(healthComputer - 0);
+        setHealthPlayer(
+          healthPlayer - defaultSpells[indexSpellPlayer].damage / 5
+        );
+      }
+    }
+
+    if (randomSpell.name !== "Protego") {
+      if (selectedSpell !== "Protego") {
+        setHealthPlayer(healthPlayer - randomSpell.damage);
+      } else {
+        setHealthPlayer(healthPlayer - 0);
+        setHealthComputer(healthComputer - randomSpell.damage / 5);
+      }
+    } // Inflige des dégats à l'adversaire, SI Protego alors, on renvoit 25% des dégats du lanceur
+
+    setSpells(updateSpells); // MAJ de notre tableau pour y ajouter le sort consommé par le computer
     setDisplayRandomSpell(randomSpell.name);
-    setSpells(updateSpells);
     setDisplaySpell(selectedSpell);
   };
 
-  // On affiche la modal par défaut
-  const [showModal, setShowModal] = useState(true);
-  const [round, setRound] = useState(1);
-  const [gameOver, setGameOver] = useState(false);
+  const [showModal, setShowModal] = useState(true); // Switch pour trigger la modal
+  const [round, setRound] = useState(1); // Count des rounds
+  const [gameOver, setGameOver] = useState(false); // State pour conditionner l'affichage du message de victoire/defaite
   const handleModal = () => {
-    setShowModal(!showModal);
+    // Au clic du bouton de la modal
+    setShowModal(!showModal); // La modale disparait
   };
 
   const handleNextRound = () => {
-    setDisableSpell(!disableSpell); // re-rends les sorts cliquables au round
-    setShowSpell(!showSpell); // Cache le button de next round
+    // Au clic du bouton next Round
+    setDisableSpell(!disableSpell); // Les autres sorts ne sont plus disabled
+    setShowSpell(!showSpell); // Cache les sorts jetés et le button next round
     if (round < 3) {
       setRound(round + 1); // passe au round suivant
     } else {
-      setRound(1); // on reset le round à 1
-      setGameOver(true); // On conditionne l'affichage du résultat de la modal
-      setShowModal(!showModal); // On réaffiche la modal
-      setSpells(defaultSpells); // On reset les sorts
+      setRound(1); // Reset le round à 1
+      setGameOver(true); // Conditionne l'affichage du résultat de la modal
+      setShowModal(!showModal); // La modal apparait
+      setSpells(defaultSpells); // Les sorts par défauts sont rechargés
+      setHealthComputer(100); // Les santés par défaut sont rechargées
+      setHealthPlayer(100);
+
+      if (healthComputer < healthPlayer) {
+        setWinner(`The Winner is ${playerChoose.name}`);
+      } else if (healthComputer > healthPlayer) {
+        setWinner(`The Winner is ${computerPlayer.name}`);
+      } else {
+        setWinner("There is no winner");
+      }
     }
   };
 
@@ -116,13 +152,16 @@ function Playground({ playerChoose, computerPlayer }) {
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
-                  <CharacterCard fighter={playerChoose} />
+                  <CharacterCard fighter={playerChoose} health={healthPlayer} />
                 </div>
                 <div className="player">
                   {showModal ? (
-                    <CharacterCard />
+                    <CharacterCard health={healthComputer} />
                   ) : (
-                    <CharacterCard fighter={computerPlayer} />
+                    <CharacterCard
+                      fighter={computerPlayer}
+                      health={healthComputer}
+                    />
                   )}
                 </div>
                 <div className="nextButton">
@@ -136,7 +175,7 @@ function Playground({ playerChoose, computerPlayer }) {
                     disabled={!showSpell}
                     onClick={handleNextRound}
                   >
-                    Next
+                    {round === 3 ? "Results" : "Next"}
                   </button>
                 </div>
               </article>
@@ -154,7 +193,7 @@ function Playground({ playerChoose, computerPlayer }) {
             <div className="modal z-20">
               <div className="modalText">
                 <h3 className="title-playground">
-                  {gameOver ? "Game Over !" : "Here’s your battle ground !"}
+                  {gameOver ? winner : "Here’s your battle ground !"}
                 </h3>
                 <button
                   type="button"
