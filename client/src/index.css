@@ -34,7 +34,7 @@
   }
 
   .btn-third {
-    @apply bg-beige text-dabrown font-semibold font-quicksand rounded-4xl px-4 py-4 shadow-area w-8/12;
+    @apply bg-beige text-dabrown font-semibold font-quicksand rounded-4xl px-4 py-4 shadow-area w-[200px];
   }
 
   /* General */

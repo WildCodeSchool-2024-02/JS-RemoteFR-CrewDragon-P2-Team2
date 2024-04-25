@@ -103,24 +103,26 @@ function Playground({ playerChoose, computerPlayer }) {
         >
           <div className="playgroundBackground">
             <section className="playgroundContent">
+              <p
+                className={`btn-third absolute max-[991px]:left-[10%] top-[52%] min-[992px]:top-[35%] z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out max-[991px]:translate-y-full opacity-100" : "transform transitions-all duration-500 ease-in_out min-[992px]:-translate-x-full opacity-0"}`}
+              >
+                {displaySpell}
+              </p>
+              <p
+                className={`btn-third absolute max-[991px]:left-[55%] max-[991px]:top-[52%] z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out max-[991px]:translate-y-full opacity-100" : "transform transitions-all duration-500 ease-in_out min-[992px]:translate-x-full opacity-0"}`}
+              >
+                {displayRandomSpell}
+              </p>
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
                 <div className="player">
                   <CharacterCard fighter={playerChoose} />
-                  <p
-                    className={`btn-third absolute z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out translate-x-full opacity-100" : "transform transitions-all duration-500 ease-in_out opacity-0"}`}
-                  >
-                    {displaySpell}
-                  </p>
                 </div>
                 <div className="player">
                   {showModal ? (
                     <CharacterCard />
                   ) : (
                     <CharacterCard fighter={computerPlayer} />
-                  )}
-                  {showSpell && (
-                    <p className="btn-third">{displayRandomSpell}</p>
                   )}
                 </div>
                 <div className="nextButton">
