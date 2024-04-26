@@ -175,7 +175,7 @@ function Playground({
   };
   return (
     <section
-      className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center"
+      className="py-4 sm:w-80 w-npmfull mx-auto flex flex-col items-center"
       id="play_game"
     >
       <h2 className="title-sections">... And cast your spells !</h2>
