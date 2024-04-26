@@ -1,7 +1,24 @@
 import CharacterCardPlayer from "./CharacterCardPlayer";
 
 function ScoreBoard() {
-  const results = JSON.parse(localStorage.getItem("results"));
+  const results =
+    JSON.parse(localStorage.getItem("results")) === null
+      ? [
+          {
+            score: 0,
+            player: {
+              name: "",
+              image: "",
+              health: 100,
+            },
+            computer: {
+              name: "",
+              image: "",
+              health: 100,
+            },
+          },
+        ]
+      : JSON.parse(localStorage.getItem("results"));
   return (
     <section
       className="py-4 w-80 mx-auto flex flex-col items-center"
