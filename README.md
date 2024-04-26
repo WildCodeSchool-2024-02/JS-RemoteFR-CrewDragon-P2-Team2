@@ -12,9 +12,9 @@
   </a>
 </p>
 
-> Jeu sur le thème de Harry Potter où deux socrciers s
+> Jeu sur le thème de Harry Potter où deux socrciers s'affrontent dans un duel épique de sorts et de stratégies dans lequel vous défiez votre adversaire dans une bataille magique sans précédent.
 
-### 🏠 [Homepage](https://github.com/WildCodeSc)
+### 🏠 [Homepage](https://github.com/WildCodeSchool-2024-02/JS-RemoteFR-CrewDragon-P2-Team2)
 
 ### ✨ [Demo](hool-2024-02/JS-RemoteFR-CrewDragon-P2-Team2)
 
@@ -32,9 +32,12 @@ npm run test
 
 ## Author
 
-👤 **Amandine**
+👤  Kelly, Amandine, Vincent, David
 
 * Github: [@team2](https://github.com/team2)
+
+## 💼  LinkedIn username 
+kelly-jeanne-beck, amandineetchartdinetch, vincentpasquiou, david-lanzetti-b70666195
 
 ## 🤝 Contributing
 
@@ -46,7 +49,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2024 [Amandine](https://github.com/team2).<br />
+Copyright © 2024 [Kelly] [Amandine] [Vincent] [David](https://github.com/team2).<br />
 This project is [MIT](https://github.com/team2/team2/blob/master/LICENSE) licensed.
 
 ***
