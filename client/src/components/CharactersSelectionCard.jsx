@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 
 function CharactersSelectionCard({
   characters,
@@ -7,9 +8,12 @@ function CharactersSelectionCard({
   lockPlayerChoose,
   setResetPlayer,
 }) {
+  const location = useLocation();
+
   const handleClick = (playerChoose) => {
     setPlayerChoose({ ...playerChoose, character: playerChoose.name });
     setResetPlayer(false);
+    window.location.href = `${location.pathname}#play_game`;
 
     const computers = characters.filter(
       (character) => character !== playerChoose
@@ -53,7 +57,7 @@ function CharactersSelectionCard({
               <div className="modalCharacterSelection">
                 <p className="font-bold">{character.name}</p>
                 <p className={houseClasses[character.house]}>
-                  {character.house} toto
+                  {character.house}
                 </p>
                 <button onClick={() => handleClick(character)} type="button">
                   Choose
