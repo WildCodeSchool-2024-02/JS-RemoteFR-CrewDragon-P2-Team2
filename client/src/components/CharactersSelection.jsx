@@ -27,7 +27,7 @@ function CharactersSelection({ setPlayerChoose, setComputerPlayer }) {
   }, []);
 
   return (
-    <section className="py-4 w-80 mx-auto flex flex-col items-center">
+    <section className="py-4 w-90 sm:w-80 mx-auto flex flex-col items-center">
       <h2 className="title-sections">Choose your character</h2>
       {!isLoading ? (
         <CharactersSelectionCard
