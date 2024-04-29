@@ -8,7 +8,7 @@ function CharacterCardPlayer({ fighter, health }) {
         src={fighter?.image !== undefined ? fighter.image : backCard}
         alt="Personnage"
       />
-      <figcaption className="font-bold text-dabrown">
+      <figcaption className="font-bold text-dabrown leading-5">
         {fighter?.name !== undefined ? fighter.name : "Wizards Coders"} |{" "}
         {health}
       </figcaption>

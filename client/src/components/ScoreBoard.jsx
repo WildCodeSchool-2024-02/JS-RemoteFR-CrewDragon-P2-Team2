@@ -25,8 +25,10 @@ function ScoreBoard() {
       id="score_board"
     >
       <h2 className="title-sections">ScoreBoard</h2>
-      <p>Find your result here !</p>
-      <article className="containerNeumorphism">
+      <p className="pt-4 font-quicksand text-dabrown font-light">
+        Find your result here !
+      </p>
+      <article className="containerNeumorphism flex justify-center">
         {results[0].player.name !== "" && (
           <>
             <CharacterCardPlayer
