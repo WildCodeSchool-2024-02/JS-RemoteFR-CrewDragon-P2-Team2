@@ -21,12 +21,10 @@ function App() {
     const audio = document.getElementById("audio");
     audio.volume = volume; // Met à jour le volume de l'audio
     if (isSoundOn) {
-
       audio.play();
     } else {
       audio.pause();
     }
-    
   }, [isSoundOn, volume]);
 
   const toggleSound = () => {
@@ -44,7 +42,6 @@ function App() {
         volume={volume}
         handleVolumeChange={handleVolumeChange}
       />
-
       <header>
         <NavBar />
       </header>
