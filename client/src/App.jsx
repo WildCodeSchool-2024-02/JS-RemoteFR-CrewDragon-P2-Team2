@@ -7,43 +7,51 @@ import CharactersSelection from "./components/CharactersSelection";
 import Playground from "./components/Playground";
 import ScoreBoard from "./components/ScoreBoard";
 import Footer from "./components/Footer";
+import SoundButton from "./components/SoundButton";
 
 function App() {
+  const [isSoundOn, setIsSoundOn] = useState(true); // État pour suivre si le son est activé ou désactivé
+  const [volume, setVolume] = useState(0.5);
   const [playerChoose, setPlayerChoose] = useState();
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
   const [resetPlayer, setResetPlayer] = useState(false); // toogle to force choose another player
 
-  const [isPlaying, setIsPlaying] = useState(true); // state to track if the music is playing or paused
-
   useEffect(() => {
     const audio = document.getElementById("audio");
-    if (isPlaying) {
+    audio.volume = volume; // Met à jour le volume de l'audio
+    if (isSoundOn) {
+
       audio.play();
     } else {
       audio.pause();
     }
-  }, [isPlaying]);
+    
+  }, [isSoundOn, volume]);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
+  const toggleSound = () => {
+    setIsSoundOn(!isSoundOn);
   };
-
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+  };
   return (
     <>
-      <div>
-        <audio id="audio" autoPlay>
-          <source src={musique} type="audio/mpeg" />
-          <track kind="captions" src="" label="French captions" />
-        </audio>
-        <button type="button" onClick={togglePlay}>
-          {isPlaying ? "Pause Music" : "Play Music"}
-        </button>
-      </div>
+      <SoundButton
+        isSoundOn={isSoundOn}
+        toggleSound={toggleSound}
+        volume={volume}
+        handleVolumeChange={handleVolumeChange}
+      />
 
       <header>
         <NavBar />
       </header>
+      <audio id="audio" autoPlay loop>
+        <source src={musique} type="audio/mpeg" />
+        <track kind="captions" src="" label="French captions" />
+      </audio>
       <main className="flex flex-col items-center gap-y-12 md:gap-y-16">
         <Intro />
         <Rules />
