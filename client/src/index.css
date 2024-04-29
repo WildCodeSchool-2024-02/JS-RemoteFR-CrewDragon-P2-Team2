@@ -7,7 +7,8 @@
 @layer components {
   /* Containers */
   .containerNeumorphism {
-    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    @apply w-full shadow-area bg-beige gap-y-8 gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    scrollbar-width: none;
   }
 
   .containerPlayground {
