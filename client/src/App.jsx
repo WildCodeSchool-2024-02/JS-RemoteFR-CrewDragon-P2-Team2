@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import musique from "./assets/musique/the-magic-tree-150606.mp3";
 import NavBar from "./components/NavBar";
 import Intro from "./components/Introduction";
 import Rules from "./components/Rules";
@@ -12,8 +13,34 @@ function App() {
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
   const [resetPlayer, setResetPlayer] = useState(false); // toogle to force choose another player
+
+  const [isPlaying, setIsPlaying] = useState(true); // state to track if the music is playing or paused
+
+  useEffect(() => {
+    const audio = document.getElementById("audio");
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying]);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <>
+      <div>
+        <audio id="audio" autoPlay>
+          <source src={musique} type="audio/mpeg" />
+          <track kind="captions" src="" label="French captions" />
+        </audio>
+        <button type="button" onClick={togglePlay}>
+          {isPlaying ? "Pause Music" : "Play Music"}
+        </button>
+      </div>
+
       <header>
         <NavBar />
       </header>
