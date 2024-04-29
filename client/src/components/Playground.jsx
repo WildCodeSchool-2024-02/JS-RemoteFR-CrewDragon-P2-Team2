@@ -268,7 +268,7 @@ function Playground({
                 ) : (
                   <button
                     type="button"
-                    className="btn-third"
+                    className="btn-third min-w-[150px]"
                     onClick={handleModal}
                   >
                     {playerChoose === undefined || resetPlayer === true
