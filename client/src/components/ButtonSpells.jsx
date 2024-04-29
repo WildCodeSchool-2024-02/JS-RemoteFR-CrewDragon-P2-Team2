@@ -5,7 +5,7 @@ function ButtonSpells({ spells, handleSpell, disableSpell }) {
     <>
       {spells.map((spell) => (
         <button
-          className={spell.isUsed === false ? "btn-primary" : "btn-secondary"}
+          className={`text-sm sm:text-base ${spell.isUsed === false ? "btn-primary" : "btn-secondary"}`}
           key={spell.id}
           type="button"
           disabled={spell.isUsed || disableSpell}

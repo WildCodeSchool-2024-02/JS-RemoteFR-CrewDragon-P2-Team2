@@ -16,7 +16,6 @@ function App() {
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
   const [resetPlayer, setResetPlayer] = useState(false); // toogle to force choose another player
-
   useEffect(() => {
     const audio = document.getElementById("audio");
     audio.volume = volume; // Met à jour le volume de l'audio
