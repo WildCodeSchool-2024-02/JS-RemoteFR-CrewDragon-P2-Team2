@@ -1,10 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/images/HummingBird1.png";
+import musique from "../assets/musique/the-magic-tree-150606.mp3";
+import SoundButton from "./SoundButton";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [volume, setVolume] = useState(0.1);
+  const [isSoundOn, setIsSoundOn] = useState(true); // État pour suivre si le son est activé ou désactivé
 
   const menuOpen = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const audio = document.getElementById("audio");
+    audio.volume = volume; // Met à jour le volume de l'audio
+    if (isSoundOn) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [isSoundOn, volume]);
+
+  const toggleSound = () => {
+    setIsSoundOn(!isSoundOn);
+  };
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+  };
 
   return (
     <>
@@ -13,6 +35,12 @@ function NavBar() {
           className="h-20 lg:h-24 w-auto"
           src={logo}
           alt="Wizards Coder's logo"
+        />
+        <SoundButton
+          isSoundOn={isSoundOn}
+          toggleSound={toggleSound}
+          volume={volume}
+          handleVolumeChange={handleVolumeChange}
         />
 
         <button
@@ -86,6 +114,10 @@ function NavBar() {
         </ul>
       </nav>
       <hr className="w-90 h-[3px] rounded bg-brown mx-auto mb-12 md:mb-14 lg:mb-20 border-none" />
+      <audio id="audio" autoPlay loop>
+        <source src={musique} type="audio/mpeg" />
+        <track kind="captions" src="" label="French captions" />
+      </audio>
     </>
   );
 }
