@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
+import backCard from "../assets/images/HummingBird.png";
+
+import protegoSound from "../assets/audio/protego.mp3";
+import confringoSound from "../assets/audio/confringo.mp3";
+import stupefixSound from "../assets/audio/stupefix.mp3";
+import slugulusSound from "../assets/audio/slugulus.mp3";
 
 function Playground({
   playerChoose,
@@ -21,6 +27,7 @@ function Playground({
       damage: 0,
       isUsed: false,
       isUsedComputer: false,
+      sound: protegoSound, // Ajoutez la référence au fichier audio pour Protego
     },
     {
       id: 2,
@@ -28,6 +35,7 @@ function Playground({
       damage: 50,
       isUsed: false,
       isUsedComputer: false,
+      sound: confringoSound, // Ajoutez la référence au fichier audio pour Confringo
     },
     {
       id: 3,
@@ -35,6 +43,7 @@ function Playground({
       damage: 25,
       isUsed: false,
       isUsedComputer: false,
+      sound: stupefixSound, // Ajoutez la référence au fichier audio pour Stupéfix
     },
     {
       id: 4,
@@ -42,8 +51,10 @@ function Playground({
       damage: 10,
       isUsed: false,
       isUsedComputer: false,
+      sound: slugulusSound, // Ajoutez la référence au fichier audio pour Slugulus Eructo
     },
   ];
+
   const [spells, setSpells] = useState(defaultSpells); // Par défaut les sorts disponibles les suivants
   const [disableSpell, setDisableSpell] = useState(false); // Par défaut les sorts sont ne sont pas disabled
   const [showSpell, setShowSpell] = useState(false); // N'affiche pas les sorts jetés et le button next par défaut
@@ -56,21 +67,27 @@ function Playground({
     {
       score: 0,
       player: {
-        name: "",
-        image: "",
+        name: "Wizards Coders",
+        image: `${backCard}`,
         health: 100,
       },
       computer: {
-        name: "",
-        image: "",
+        name: "Wizards Coders",
+        image: `${backCard}`,
         health: 100,
       },
     },
-  ]); // For Storing local host
+  ]); // For Storing localStorage
+
+  // Références pour les fichiers audio
+  const protegoRef = useRef(null);
+  const confringoRef = useRef(null);
+  const stupefixRef = useRef(null);
+  const slugulusRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("results", JSON.stringify(results));
-  }, [results]); // Set Local Host
+  }, [results]); // Set LocalStorage
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -118,6 +135,23 @@ function Playground({
     setSpells(updateSpells); // MAJ de notre tableau pour y ajouter le sort consommé par le computer
     setDisplayRandomSpell(randomSpell.name);
     setDisplaySpell(selectedSpell);
+
+    switch (selectedSpell) {
+      case "Protego":
+        protegoRef.current.play();
+        break;
+      case "Confringo":
+        confringoRef.current.play();
+        break;
+      case "Stupéfix":
+        stupefixRef.current.play();
+        break;
+      case "Slugulus Eructo":
+        slugulusRef.current.play();
+        break;
+      default:
+        break;
+    }
   };
 
   const [showModal, setShowModal] = useState(true); // Switch pour trigger la modal
@@ -158,7 +192,7 @@ function Playground({
             health: healthComputer,
           },
         },
-      ]); // MAJ Local Host
+      ]); // MAJ LocalStorage
 
       setTimeout(() => {
         window.location.href = `${location.pathname}#chara_select`;
@@ -175,8 +209,8 @@ function Playground({
   };
   return (
     <section
-      className="py-4 sm:w-80 w-npmfull mx-auto flex flex-col items-center"
       id="play_game"
+      className="py-4 sm:w-80 w-full mx-auto flex flex-col items-center"
     >
       <h2 className="title-sections">... And cast your spells !</h2>
       <article className="containerPlayground">
@@ -191,30 +225,37 @@ function Playground({
         >
           <div className="playgroundBackground">
             <section className="playgroundContent">
-              <p
-                className={`btn-third absolute max-[991px]:left-[10%] top-[52%] min-[992px]:top-[35%] z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out max-[991px]:translate-y-full opacity-100" : "transform transitions-all duration-500 ease-in_out min-[992px]:-translate-x-full opacity-0"}`}
-              >
-                {displaySpell}
-              </p>
-              <p
-                className={`btn-third absolute max-[991px]:left-[55%] max-[991px]:top-[52%] z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out max-[991px]:translate-y-full opacity-100" : "transform transitions-all duration-500 ease-in_out min-[992px]:translate-x-full opacity-0"}`}
-              >
-                {displayRandomSpell}
-              </p>
               <h3 className="titleRound">Round {round}</h3>
               <article className="layoutPlayers">
-                <div className="player">
-                  <CharacterCard fighter={playerChoose} health={healthPlayer} />
-                </div>
-                <div className="player">
-                  {showModal ? (
-                    <CharacterCard health={healthComputer} />
-                  ) : (
+                <div className="w-full flex flex-row justify-around sm:gap-x-6 md:gap-x-8 lg:justify-between">
+                  <div>
                     <CharacterCard
-                      fighter={computerPlayer}
-                      health={healthComputer}
+                      fighter={playerChoose}
+                      health={healthPlayer}
                     />
-                  )}
+                  </div>
+                  <div>
+                    {showModal ? (
+                      <CharacterCard health={healthComputer} />
+                    ) : (
+                      <CharacterCard
+                        fighter={computerPlayer}
+                        health={healthComputer}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="w-full flex flex-row justify-around sm:gap-x-6 md:gap-8 lg:absolute lg:top-[30%] lg:flex-col lg:items-center lg:gap-24">
+                  <p
+                    className={`btn-third w-[30vw] lg:w-[200px] flex justify-center items-center relative z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out opacity-100" : "transform transitions-all duration-500 ease-in_out max-[1023px]:-translate-y-full lg:-translate-x-full opacity-0"}`}
+                  >
+                    {displaySpell}
+                  </p>
+                  <p
+                    className={`btn-third w-[30vw] lg:w-[200px] flex justify-center items-center relative z-0 ${showSpell ? "transform transitions-all duration-700 ease-in_out opacity-100" : "transform transitions-all duration-500 ease-in_out max-[1023px]:-translate-y-full lg:translate-x-full opacity-0"}`}
+                  >
+                    {displayRandomSpell}
+                  </p>
                 </div>
                 <div className="nextButton">
                   <button
@@ -261,7 +302,7 @@ function Playground({
                 ) : (
                   <button
                     type="button"
-                    className="btn-third"
+                    className="btn-third min-w-[150px]"
                     onClick={handleModal}
                   >
                     {playerChoose === undefined || resetPlayer === true
@@ -274,6 +315,18 @@ function Playground({
           )}
         </div>
       </article>
+      <audio ref={protegoRef} src={protegoSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={confringoRef} src={confringoSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={stupefixRef} src={stupefixSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={slugulusRef} src={slugulusSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
     </section>
   );
 }

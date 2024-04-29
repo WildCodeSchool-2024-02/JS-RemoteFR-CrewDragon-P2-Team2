@@ -2,9 +2,7 @@ import hogwartsCastle from "../assets/images/Harrypotter.png";
 
 function Intro() {
   return (
-    <section
-      className="py-4 w-80 mx-auto flex flex-col items-center gap-4"
-    >
+    <section className="py-4 w-80 mx-auto flex flex-col items-center gap-4">
       <h1
         id="intro"
         className="pt-2 font-logo text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center text-dabrown"

@@ -33,7 +33,7 @@ function CharactersSelectionCard({
     Ravenclaw: "text-ravenclaw",
   };
   return (
-    <article className="containerNeumorphism">
+    <article className="containerNeumorphism grid grid-rows-1 grid-flow-col xl:flex xl:flex-wrap xl:justify-center overflow-x-scroll xl:overflow-auto">
       {characters.map((character, index) => (
         <>
           <input
