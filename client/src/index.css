@@ -174,3 +174,6 @@
 .myBtn:hover {
   transform: translate3d(0, -10px, 0);
 }
+*:hover {
+  @apply cursor-[url(http://www.rw-designer.com/cursor-extern.php?id=26747),auto];
+}
