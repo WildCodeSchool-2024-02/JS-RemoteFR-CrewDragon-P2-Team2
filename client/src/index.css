@@ -162,3 +162,15 @@
     @apply text-white text-center;
   }
 }
+
+.myBtn {
+  transition: all 0.2s linear;
+  display: flex;
+  width: 45px;
+  justify-content: center;
+  align-items: center;
+}
+
+.myBtn:hover {
+  transform: translate3d(0, -10px, 0);
+}
