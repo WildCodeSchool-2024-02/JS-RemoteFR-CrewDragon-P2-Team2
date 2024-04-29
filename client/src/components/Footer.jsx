@@ -16,7 +16,7 @@ function Footer() {
         <p className="font-normal">
           <span className="font-logo">Duels in Hogwarts</span> © 2024
         </p>
-        <button onClick={scrollToTop} className="myBtn" type="button">
+        <button onClick={scrollToTop} className="myBtn pt-4" type="button">
           <img
             src="https://cdn-icons-png.freepik.com/512/44/44603.png"
             alt="Pied"
