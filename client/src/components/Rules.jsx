@@ -13,7 +13,7 @@ function Rules() {
       className={`py-8 w-80 border-y-2 border-brown flex flex-col ${showContent ? "transition-all duration-700 ease-in-out gap-y-8" : "transition-all duration-500 ease-in-out gap-y-0"}`}
     >
       <h2 className="title-sections flex justify-center gap-[5vw]">
-        If you want to kwon more about the Rules
+        If you want to know more about the Rules
         <button type="button" onClick={toggleContent}>
           <div
             className={`bg-dabrown h-0.5 w-6 rounded flex justify-center items-center ${
@@ -60,8 +60,8 @@ function Rules() {
               To fight your opponent, you have the choice between:
             </p>
             <ul className="py-2 font-quicksand text-dabrown">
-              <li>Protego: shield</li>
-              <li>Conference: 50 pt</li>
+              <li>Protego: 25% of with own spell to opponent</li>
+              <li>Confringo: 50 pt</li>
               <li> Stupefix: 25 pt</li>
               <li> Slugulus Eructo: 10 pt</li>
             </ul>
@@ -73,10 +73,8 @@ function Rules() {
             </p>
           </article>
           <article>
-            <h3 className="rules-title">Little bonus :</h3>
+            <h3 className="rules-title">Enjoy your game</h3>
             <p className="rules-text">
-              In the event of a tie, a wild card is offered to you to try to win
-              by chance. <br />
               Replay as many times as you want.
               <br />{" "}
               <span className="font-quicksand font-semibold text-dabrown">

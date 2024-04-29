@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 
 function CharactersSelectionCard({
   characters,
   setPlayerChoose,
   setComputerPlayer,
+  lockPlayerChoose,
+  setResetPlayer,
 }) {
+  const location = useLocation();
+
   const handleClick = (playerChoose) => {
     setPlayerChoose({ ...playerChoose, character: playerChoose.name });
+    setResetPlayer(false);
+    window.location.href = `${location.pathname}#play_game`;
 
     const computers = characters.filter(
       (character) => character !== playerChoose
@@ -25,7 +32,6 @@ function CharactersSelectionCard({
     Hufflepuff: "text-hufflepuff",
     Ravenclaw: "text-ravenclaw",
   };
-
   return (
     <article className="containerNeumorphism">
       {characters.map((character, index) => (
@@ -47,13 +53,17 @@ function CharactersSelectionCard({
             }}
           >
             <span>label</span>
-            <div className="modalCharacterSelection">
-              <p className="font-bold">{character.name}</p>
-              <p className={houseClasses[character.house]}>{character.house}</p>
-              <button onClick={() => handleClick(character)} type="button">
-                Choose
-              </button>
-            </div>
+            {lockPlayerChoose === false && (
+              <div className="modalCharacterSelection">
+                <p className="font-bold">{character.name}</p>
+                <p className={houseClasses[character.house]}>
+                  {character.house}
+                </p>
+                <button onClick={() => handleClick(character)} type="button">
+                  Choose
+                </button>
+              </div>
+            )}
           </label>
         </>
       ))}
@@ -68,6 +78,8 @@ CharactersSelectionCard.propTypes = {
   }).isRequired,
   setPlayerChoose: PropTypes.string.isRequired,
   setComputerPlayer: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
 };
 
 export default CharactersSelectionCard;

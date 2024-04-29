@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
 
-function Playground({ playerChoose, computerPlayer }) {
+function Playground({
+  playerChoose,
+  computerPlayer,
+  setLockPlayerChoose,
+  lockPlayerChoose,
+  setResetPlayer,
+  resetPlayer,
+}) {
+  const location = useLocation();
   const defaultSpells = [
     {
       id: 1,
@@ -43,6 +52,25 @@ function Playground({ playerChoose, computerPlayer }) {
   const [healthComputer, setHealthComputer] = useState(100); // Par défaut santé du computer
   const [healthPlayer, setHealthPlayer] = useState(100); // Par défaut santé du joueur
   const [winner, setWinner] = useState(); // Stocker le gagnant du combat
+  const [results, setResults] = useState([
+    {
+      score: 0,
+      player: {
+        name: "",
+        image: "",
+        health: 100,
+      },
+      computer: {
+        name: "",
+        image: "",
+        health: 100,
+      },
+    },
+  ]); // For Storing local host
+
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]); // Set Local Host
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -98,6 +126,7 @@ function Playground({ playerChoose, computerPlayer }) {
   const handleModal = () => {
     // Au clic du bouton de la modal
     setShowModal(!showModal); // La modale disparait
+    setLockPlayerChoose(!lockPlayerChoose); // Bloque le choix du personnage une fois le jeu lancé
   };
 
   const handleNextRound = () => {
@@ -108,11 +137,32 @@ function Playground({ playerChoose, computerPlayer }) {
       setRound(round + 1); // passe au round suivant
     } else {
       setRound(1); // Reset le round à 1
-      setGameOver(true); // Conditionne l'affichage du résultat de la modal
+      setGameOver(true); // Conditionne l'affichage du résultat de la modalCharacterSelection
+      setResetPlayer(true); // Rends le choix du perso obligatoire au jeu suivant
       setShowModal(!showModal); // La modal apparait
       setSpells(defaultSpells); // Les sorts par défauts sont rechargés
       setHealthComputer(100); // Les santés par défaut sont rechargées
       setHealthPlayer(100);
+      setLockPlayerChoose(false); // Unlock le choix des personnages
+      setResults([
+        {
+          score: healthPlayer - healthComputer,
+          player: {
+            name: `${playerChoose.name}`,
+            image: `${playerChoose.image}`,
+            health: healthPlayer,
+          },
+          computer: {
+            name: `${computerPlayer.name}`,
+            image: `${computerPlayer.image}`,
+            health: healthComputer,
+          },
+        },
+      ]); // MAJ Local Host
+
+      setTimeout(() => {
+        window.location.href = `${location.pathname}#chara_select`;
+      }, 2000); // Retour à la section des characters
 
       if (healthComputer < healthPlayer) {
         setWinner(`The Winner is ${playerChoose.name}`);
@@ -123,7 +173,6 @@ function Playground({ playerChoose, computerPlayer }) {
       }
     }
   };
-
   return (
     <section
       id="play_game"
@@ -205,13 +254,28 @@ function Playground({ playerChoose, computerPlayer }) {
                 <h3 className="title-playground">
                   {gameOver ? winner : "Here’s your battle ground !"}
                 </h3>
-                <button
-                  type="button"
-                  className="btn-third"
-                  onClick={handleModal}
-                >
-                  {gameOver ? "Play Again" : "Play"}
-                </button>
+                {playerChoose === undefined || resetPlayer === true ? (
+                  <button
+                    type="button"
+                    className="btn-third"
+                    onClick={handleModal}
+                    disabled
+                  >
+                    {playerChoose === undefined || resetPlayer === true
+                      ? "Choose a Player"
+                      : "Play"}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn-third"
+                    onClick={handleModal}
+                  >
+                    {playerChoose === undefined || resetPlayer === true
+                      ? "Choose a Player"
+                      : "Play"}
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -223,6 +287,10 @@ function Playground({ playerChoose, computerPlayer }) {
 Playground.propTypes = {
   playerChoose: PropTypes.func.isRequired,
   computerPlayer: PropTypes.func.isRequired,
+  setLockPlayerChoose: PropTypes.func.isRequired,
+  lockPlayerChoose: PropTypes.bool.isRequired,
+  setResetPlayer: PropTypes.func.isRequired,
+  resetPlayer: PropTypes.bool.isRequired,
 };
 
 export default Playground;

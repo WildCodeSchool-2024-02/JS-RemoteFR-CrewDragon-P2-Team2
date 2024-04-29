@@ -8,9 +8,10 @@ import ScoreBoard from "./components/ScoreBoard";
 import Footer from "./components/Footer";
 
 function App() {
-  const [playerChoose, setPlayerChoose] = useState({});
+  const [playerChoose, setPlayerChoose] = useState();
   const [computerPlayer, setComputerPlayer] = useState({});
-
+  const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
+  const [resetPlayer, setResetPlayer] = useState(false) // toogle to force choose another player
   return (
     <>
       <header>
@@ -22,8 +23,13 @@ function App() {
         <CharactersSelection
           setPlayerChoose={setPlayerChoose}
           setComputerPlayer={setComputerPlayer}
+          lockPlayerChoose={lockPlayerChoose}
+          setResetPlayer={setResetPlayer}
         />
         <Playground
+          setLockPlayerChoose={setLockPlayerChoose}
+          setResetPlayer={setResetPlayer}
+          resetPlayer={resetPlayer}
           playerChoose={playerChoose}
           computerPlayer={computerPlayer}
         />
