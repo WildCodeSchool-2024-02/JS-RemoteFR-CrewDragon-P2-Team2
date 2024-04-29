@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
+import backCard from "../assets/images/HummingBird.png";
 
 import protegoSound from "../assets/audio/protego.mp3";
 import confringoSound from "../assets/audio/confringo.mp3";
@@ -66,17 +67,17 @@ function Playground({
     {
       score: 0,
       player: {
-        name: "",
-        image: "",
+        name: "Wizards Coders",
+        image: `${backCard}`,
         health: 100,
       },
       computer: {
-        name: "",
-        image: "",
+        name: "Wizards Coders",
+        image: `${backCard}`,
         health: 100,
       },
     },
-  ]); // For Storing local host
+  ]); // For Storing localStorage
 
   // Références pour les fichiers audio
   const protegoRef = useRef(null);
@@ -86,7 +87,7 @@ function Playground({
 
   useEffect(() => {
     localStorage.setItem("results", JSON.stringify(results));
-  }, [results]); // Set Local Host
+  }, [results]); // Set LocalStorage
 
   const handleSpell = (selectedSpell) => {
     // Au clic du selectedSpell
@@ -191,7 +192,7 @@ function Playground({
             health: healthComputer,
           },
         },
-      ]); // MAJ Local Host
+      ]); // MAJ LocalStorage
 
       setTimeout(() => {
         window.location.href = `${location.pathname}#chara_select`;
@@ -301,7 +302,7 @@ function Playground({
                 ) : (
                   <button
                     type="button"
-                    className="btn-third"
+                    className="btn-third min-w-[150px]"
                     onClick={handleModal}
                   >
                     {playerChoose === undefined || resetPlayer === true

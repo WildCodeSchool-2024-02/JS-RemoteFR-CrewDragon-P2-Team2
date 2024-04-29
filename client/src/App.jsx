@@ -16,6 +16,7 @@ function App() {
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
   const [resetPlayer, setResetPlayer] = useState(false); // toogle to force choose another player
+  const [isPlaying, setIsPlaying] = useState(true); // state to track if the music is playing or paused
 
   useEffect(() => {
     const audio = document.getElementById("audio");
@@ -34,6 +35,7 @@ function App() {
     const newVolume = parseFloat(event.target.value);
     setVolume(newVolume);
   };
+
   return (
     <>
       <SoundButton

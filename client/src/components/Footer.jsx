@@ -1,4 +1,10 @@
 function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <hr className="w-90 h-[3px] rounded bg-brown mx-auto mt-12 md:mt-14 lg:mt-20 border-none" />
@@ -10,6 +16,12 @@ function Footer() {
         <p className="font-normal">
           <span className="font-logo">Duels in Hogwarts</span> © 2024
         </p>
+        <button onClick={scrollToTop} className="myBtn" type="button">
+          <img
+            src="https://cdn-icons-png.freepik.com/512/44/44603.png"
+            alt="Pied"
+          />
+        </button>
       </div>
     </>
   );

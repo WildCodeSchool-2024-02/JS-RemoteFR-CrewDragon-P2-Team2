@@ -7,21 +7,16 @@
 @layer components {
   /* Containers */
   .containerNeumorphism {
-    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    @apply w-full shadow-area bg-beige gap-y-8 gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    scrollbar-width: none;
   }
 
   .containerPlayground {
-    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    @apply w-90 sm:w-80 min-h-[400px] shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-4 sm:p-6 md:p-8 rounded-6xl;
   }
 
   .characterCard {
-    @apply bg-beige shadow-area flex flex-col justify-center items-center gap-5 p-5 rounded-6xl;
-  }
-
-  @media screen and (max-width: 768px) {
-    .containerPlayground {
-      @apply w-full p-0;
-    }
+    @apply w-[30vw] lg:w-[20vw] xl:w-[15vw] h-full bg-beige shadow-area flex flex-col justify-center items-center gap-2 md:gap-4 p-2 pb-4 md:p-4 rounded-4xl md:rounded-6xl;
   }
 
   /* Components */
@@ -34,7 +29,7 @@
   }
 
   .btn-third {
-    @apply bg-beige text-dabrown font-semibold font-quicksand rounded-4xl px-4 py-4 shadow-area w-[200px];
+    @apply bg-beige text-dabrown font-semibold font-quicksand rounded-4xl px-4 py-4 shadow-area;
   }
 
   /* General */
@@ -50,7 +45,7 @@
   }
 
   .characterCard img {
-    @apply max-w-40 rounded-6xl;
+    @apply w-full h-full max-w-60 rounded-4xl md:rounded-6xl;
   }
   /* Navbar */
   .burger-menu {
@@ -111,7 +106,7 @@
   }
 
   .playground {
-    @apply relative flex flex-col items-center justify-center w-full rounded-[40px];
+    @apply relative flex flex-col items-center justify-center w-full h-full rounded-[40px];
   }
 
   .modal {
@@ -135,43 +130,26 @@
   }
 
   .playgroundContent {
-    @apply flex flex-col items-center justify-center gap-y-12 relative text-beige text-base leading-[0.9] text-center px-0 py-12;
+    @apply flex flex-col items-center justify-center gap-y-6 md:gap-y-8 lg:gap-y-10 xl:gap-y-14 relative text-beige text-base leading-[0.9] text-center px-0 py-12;
   }
 
   .titleRound {
-    @apply bg-beige text-dabrown font-bold text-[1.4rem] w-3/5 shadow-area p-5 rounded-6xl;
+    @apply bg-beige text-dabrown font-bold text-[1.25rem] w-3/5 shadow-area p-4 rounded-6xl;
   }
 
   .spellsSelection {
-    @apply grid grid-cols-[repeat(2,1fr)] gap-12 bg-beige p-5 shadow-area rounded-6xl;
+    @apply grid grid-cols-[repeat(2,1fr)] lg:grid-cols-[repeat(4,1fr)] gap-4 p-4 bg-beige shadow-area rounded-4xl lg:rounded-6xl lg:w-[70vw] xl:w-[60vw] 2xl:w-[50vw];
   }
 
   .healthBar {
-    @apply w-[60%] border rounded-6xl border-solid border-dabrown;
+    @apply w-[80%] md:w-[70%] border rounded-6xl border-solid border-dabrown;
   }
   .health {
     @apply float-right w-full h-2.5 bg-dabrown rounded-6xl;
   }
 
   .layoutPlayers {
-    @apply w-full grid gap-y-20 justify-around;
-    grid-template-areas:
-      "card1 . card2"
-      "btn btn btn";
-  }
-
-  .player {
-    @apply relative;
-  }
-  .player:nth-child(1) {
-    grid-area: card1;
-  }
-  .player:nth-child(2) {
-    grid-area: card2;
-  }
-  .player p {
-    /* sort mobile */
-    @apply absolute left-[15%] top-[85%];
+    @apply mx-auto w-full flex flex-col gap-4 sm:gap-6 xl:gap-10 lg:w-[70vw] xl:w-[60vw] 2xl:w-[50vw];
   }
 
   .nextButton {
@@ -184,32 +162,19 @@
   .buttonNext {
     @apply text-white text-center;
   }
-  @media screen and (min-width: 992px) {
-    /* first sort desktop */
-    .player:nth-child(1) p {
-      @apply absolute left-[70%] top-[25%];
-    }
-    /* second sort desktop */
-    .player:nth-child(2) p {
-      @apply absolute left-[20%] top-[45%];
-    }
-    .spellsSelection {
-      @apply grid-cols-[repeat(4,1fr)];
-    }
-    .layoutPlayers {
-      grid-template-areas: "card1 btn card2";
-    }
-    .nextButton {
-      @apply justify-end;
-    }
-  }
+}
 
-  @media screen and (max-width: 768px) {
-    .playgroundContent {
-      @apply px-[3%] py-[10%];
-    }
-    .spellsSelection {
-      @apply grid-cols-[repeat(2,1fr)] gap-4;
-    }
-  }
+.myBtn {
+  transition: all 0.2s linear;
+  display: flex;
+  width: 45px;
+  justify-content: center;
+  align-items: center;
+}
+
+.myBtn:hover {
+  transform: translate3d(0, -10px, 0);
+}
+*:hover {
+  @apply cursor-[url(http://www.rw-designer.com/cursor-extern.php?id=26747),auto];
 }
