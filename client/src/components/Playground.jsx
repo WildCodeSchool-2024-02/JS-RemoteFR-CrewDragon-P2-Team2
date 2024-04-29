@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import ButtonSpells from "./ButtonSpells";
 import CharacterCard from "./CharacterCardPlayer";
 import field1 from "../assets/images/laboratory.webp";
+
+import protegoSound from "../assets/audio/protego.mp3";
+import confringoSound from "../assets/audio/confringo.mp3";
+import stupefixSound from "../assets/audio/stupefix.mp3";
+import slugulusSound from "../assets/audio/slugulus.mp3";
 
 function Playground({
   playerChoose,
@@ -21,6 +26,7 @@ function Playground({
       damage: 0,
       isUsed: false,
       isUsedComputer: false,
+      sound: protegoSound, // Ajoutez la référence au fichier audio pour Protego
     },
     {
       id: 2,
@@ -28,6 +34,7 @@ function Playground({
       damage: 50,
       isUsed: false,
       isUsedComputer: false,
+      sound: confringoSound, // Ajoutez la référence au fichier audio pour Confringo
     },
     {
       id: 3,
@@ -35,6 +42,7 @@ function Playground({
       damage: 25,
       isUsed: false,
       isUsedComputer: false,
+      sound: stupefixSound, // Ajoutez la référence au fichier audio pour Stupéfix
     },
     {
       id: 4,
@@ -42,8 +50,10 @@ function Playground({
       damage: 10,
       isUsed: false,
       isUsedComputer: false,
+      sound: slugulusSound, // Ajoutez la référence au fichier audio pour Slugulus Eructo
     },
   ];
+
   const [spells, setSpells] = useState(defaultSpells); // Par défaut les sorts disponibles les suivants
   const [disableSpell, setDisableSpell] = useState(false); // Par défaut les sorts sont ne sont pas disabled
   const [showSpell, setShowSpell] = useState(false); // N'affiche pas les sorts jetés et le button next par défaut
@@ -67,6 +77,12 @@ function Playground({
       },
     },
   ]); // For Storing local host
+
+  // Références pour les fichiers audio
+  const protegoRef = useRef(null);
+  const confringoRef = useRef(null);
+  const stupefixRef = useRef(null);
+  const slugulusRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("results", JSON.stringify(results));
@@ -118,6 +134,23 @@ function Playground({
     setSpells(updateSpells); // MAJ de notre tableau pour y ajouter le sort consommé par le computer
     setDisplayRandomSpell(randomSpell.name);
     setDisplaySpell(selectedSpell);
+
+    switch (selectedSpell) {
+      case "Protego":
+        protegoRef.current.play();
+        break;
+      case "Confringo":
+        confringoRef.current.play();
+        break;
+      case "Stupéfix":
+        stupefixRef.current.play();
+        break;
+      case "Slugulus Eructo":
+        slugulusRef.current.play();
+        break;
+      default:
+        break;
+    }
   };
 
   const [showModal, setShowModal] = useState(true); // Switch pour trigger la modal
@@ -281,6 +314,18 @@ function Playground({
           )}
         </div>
       </article>
+      <audio ref={protegoRef} src={protegoSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={confringoRef} src={confringoSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={stupefixRef} src={stupefixSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
+      <audio ref={slugulusRef} src={slugulusSound}>
+        <track kind="captions" src="" label="French captions" />
+      </audio>
     </section>
   );
 }
