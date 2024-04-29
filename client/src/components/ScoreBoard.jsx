@@ -8,10 +8,11 @@ function ScoreBoard() {
       id="score_board"
     >
       <h2 className="title-sections">ScoreBoard</h2>
-      <p>Find your last battle here</p>
+      <p className="pt-4 font-quicksand text-dabrown font-light">Find your last battle here</p>
       <article className="containerNeumorphism">
         {results !== null && (
           <div className="w-full flex lg:flex-row flex-col justify-around items-center gap-4 lg:justify-center">
+
             <CharacterCardPlayer
               fighter={results[0].player}
               health={results[0].player.health}

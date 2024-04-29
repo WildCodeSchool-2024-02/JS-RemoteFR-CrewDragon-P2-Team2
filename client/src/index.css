@@ -7,7 +7,8 @@
 @layer components {
   /* Containers */
   .containerNeumorphism {
-    @apply w-full shadow-area bg-beige flex flex-wrap gap-y-8 justify-center gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    @apply w-full shadow-area bg-beige gap-y-8 gap-x-[0.3rem] mx-0 my-4 p-12 rounded-6xl;
+    scrollbar-width: none;
   }
 
   .containerPlayground {
@@ -161,4 +162,19 @@
   .buttonNext {
     @apply text-white text-center;
   }
+}
+
+.myBtn {
+  transition: all 0.2s linear;
+  display: flex;
+  width: 45px;
+  justify-content: center;
+  align-items: center;
+}
+
+.myBtn:hover {
+  transform: translate3d(0, -10px, 0);
+}
+*:hover {
+  @apply cursor-[url(http://www.rw-designer.com/cursor-extern.php?id=26747),auto];
 }

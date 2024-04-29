@@ -11,7 +11,7 @@ function App() {
   const [playerChoose, setPlayerChoose] = useState();
   const [computerPlayer, setComputerPlayer] = useState({});
   const [lockPlayerChoose, setLockPlayerChoose] = useState(false); // toogle to lock selection player during game
-  const [resetPlayer, setResetPlayer] = useState(false) // toogle to force choose another player
+  const [resetPlayer, setResetPlayer] = useState(false); // toogle to force choose another player
   return (
     <>
       <header>
