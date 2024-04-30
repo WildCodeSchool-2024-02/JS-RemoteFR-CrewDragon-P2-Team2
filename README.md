@@ -32,7 +32,7 @@ npm run test
 
 ## Author
 
-👤  Kelly, Amandine, Vincent, David
+👤  Kelly, Amandine, Vincent, David , Jeviraj
 
 * Github: [@team2](https://github.com/team2)
 
@@ -49,7 +49,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2024 [Kelly] [Amandine] [Vincent] [David](https://github.com/team2).<br />
+Copyright © 2024 [Kelly] [Amandine] [Vincent] [David] [Jeviraj](https://github.com/team2).<br />
 This project is [MIT](https://github.com/team2/team2/blob/master/LICENSE) licensed.
 
 ***
